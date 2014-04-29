@@ -1,0 +1,35 @@
+{
+  "name": "101",
+  "version": "0.0.0",
+  "description": "common javascript utils that can be required selectively that assume es5+",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -c test",
+    "test-watch": "nodemon --exec lab -c test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tjmehta/101"
+  },
+  "keywords": [
+    "utils",
+    "js",
+    "helpers",
+    "functional",
+    "pick",
+    "pluck",
+    "map",
+    "array",
+    "object",
+    "string"
+  ],
+  "author": "Tejesh Mehta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tjmehta/101/issues"
+  },
+  "homepage": "https://github.com/tjmehta/101",
+  "devDependencies": {
+    "lab": "~3.0.1"
+  }
+}
