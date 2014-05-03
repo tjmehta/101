@@ -3,7 +3,7 @@ var describe = Lab.experiment;
 var it = Lab.test;
 var expect = Lab.expect;
 
-var instanceOf = require('../instanceOf');
+var instanceOf = require('../instance-of');
 
 describe('instanceOf', function () {
   it('should return true for instances of a class when used with map', function(done) {

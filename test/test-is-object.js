@@ -3,7 +3,7 @@ var describe = Lab.experiment;
 var it = Lab.test;
 var expect = Lab.expect;
 
-var isObject = require('../isObject');
+var isObject = require('../is-object');
 
 describe('isObject', function () {
   it('should return true for objects', function(done) {

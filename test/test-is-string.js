@@ -3,7 +3,7 @@ var describe = Lab.experiment;
 var it = Lab.test;
 var expect = Lab.expect;
 
-var isString = require('../isString');
+var isString = require('../is-string');
 
 describe('isString', function () {
   it('should return true for strings', function(done) {

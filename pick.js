@@ -1,4 +1,4 @@
-var isObject = require('./isObject');
+var isObject = require('./is-object');
 
 // (obj, keys)
 // (obj, keys..)

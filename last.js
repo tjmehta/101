@@ -1,6 +1,6 @@
-var isObject = require('./isObject');
+var isObject = require('./is-object');
 var exists = require('./exists');
-var isFunction = require('./isFunction');
+var isFunction = require('./is-function');
 
 module.exports = last;
 

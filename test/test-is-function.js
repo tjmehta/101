@@ -3,7 +3,7 @@ var describe = Lab.experiment;
 var it = Lab.test;
 var expect = Lab.expect;
 
-var isFunction = require('../isFunction');
+var isFunction = require('../is-function');
 
 describe('isFunction', function () {
   it('should return true for functions', function(done) {
