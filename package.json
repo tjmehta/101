@@ -31,5 +31,8 @@
   "homepage": "https://github.com/tjmehta/101",
   "devDependencies": {
     "lab": "~3.0.1"
+  },
+  "dependencies": {
+    "deep-eql": "^0.1.3"
   }
 }
