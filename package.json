@@ -33,6 +33,7 @@
     "lab": "~3.0.1"
   },
   "dependencies": {
-    "deep-eql": "^0.1.3"
+    "deep-eql": "^0.1.3",
+    "keypather": "^1.5.1"
   }
 }
