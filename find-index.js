@@ -39,7 +39,7 @@ function findIndex (list, predicate) {
   var index = -1;
   list = Array.prototype.slice.call(list); // cast as array to use some.
   list.some(function (val, i) {
-    if (predicate(val)) {
+    if (predicate(val, i, list)) {
       index = i;
       return true;
     }
