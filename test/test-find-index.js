@@ -56,13 +56,13 @@ describe('findIndex', function () {
       findIndex({});
     }
     catch (err) {
-      expect(err.message).to.equal('first argument must be list (have length) or function');
+      expect(err.message).to.equal('first argument must be a list (have length) or function');
     }
     try {
       findIndex();
     }
     catch (err) {
-      expect(err.message).to.equal('first argument must be list (have length) or function');
+      expect(err.message).to.equal('first argument must be a list (have length) or function');
     }
     try {
       findIndex(this.arr, {});

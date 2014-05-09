@@ -1,6 +1,18 @@
+/**
+ * @module 101/find-index
+ */
+
 var isFunction = require('./is-function');
 var isArray = Array.isArray;
 
+/**
+ * Finds the first value in the list that passes the given function (predicate) and returns it's index.
+ * If list is not provided findIndex will return a partial-function which accepts a list as the first argument.
+ * @function module:101/find-index
+ * @param {array|string} [list] - list to be searched
+ * @param {array|string} predicate - executed on each item in the list and returns true when the item is found
+ * @return {number|function} Index of item which passes predicate or Partial isFunction (which accepts list)
+ */
 module.exports = function (list, predicate) {
   if (list && list.length && !isFunction(list)) {
     return findIndex(list, predicate);
@@ -12,7 +24,7 @@ module.exports = function (list, predicate) {
     };
   }
   else {
-    throw new TypeError('first argument must be list (have length) or function');
+    throw new TypeError('first argument must be a list (have length) or function');
   }
 };
 

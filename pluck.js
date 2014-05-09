@@ -1,7 +1,17 @@
+/**
+ * @module 101/pluck
+ */
+
 var isObject = require('./is-object');
 
-// (obj, key)
-// (key)(obj)
+/**
+ * Functional version of obj[key], returns the value of the key from obj.
+ * When only a key is specified pluck returns a partial-function which accepts obj.
+ * @function module:101/pluck
+ * @param {object} [obj] - object from which the value is plucked
+ * @param {string|array} key - key of the value from obj which is returned
+ * @return {*|function} The value of the key from obj or Partial-function pluck (which accepts obj) and returns the value of the key from obj
+ */
 module.exports = function (obj, key) {
   if (!isObject(obj)) {
     key = obj;
