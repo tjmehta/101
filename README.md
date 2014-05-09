@@ -187,3 +187,7 @@ pluck(obj, 'foo'); // 1
 // use it with array.map
 [obj, obj, obj].map(pluck('foo')); // [1, 1, 1]
 ```
+
+## License
+
+MIT
