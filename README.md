@@ -1,7 +1,29 @@
 101
 ===
 
-common utils / helpers that can be required selectively
+common utils that can be required selectively
+
+## and
+
+Functional version of &&
+
+```js
+var and = require('101/and');
+
+and(true, false); // false
+and(true, true);  // true
+```
+
+## apply
+
+Functional version of function.apply
+
+```js
+var apply = require('101/apply');
+
+and(true, false); // false
+and(true, true);  // true
+```
 
 ## exists
 
@@ -150,6 +172,49 @@ last({
   foo: 1,
   bar: 2
 });              // 2
+```
+
+## not
+
+Functional version of !
+
+```js
+var not = require('101/not');
+
+not(isString)('hey'); // false
+not(isString)(100);   // true
+```
+
+## or
+
+Functional version of ||
+
+```js
+var or = require('101/or');
+
+or(true, true);   // true
+or(true, false);  // true
+or(false, false); // false
+```
+
+## passAll
+
+Muxes arguments across many functions and &&'s the results
+
+```js
+var passAll = require('101/pass-all');
+
+['', 'foo', 'bar', 100].map(passAll(isString, isTruthy)); // [false, true, true, false]
+```
+
+## passAny
+
+Muxes arguments across many functions and ||'s the results
+
+```js
+var passAny = require('101/pass-any');
+
+['', 'foo', 'bar', 100].map(passAny(isString, isNumber)); // [true, true, true, true]
 ```
 
 ## pick
