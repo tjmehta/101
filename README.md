@@ -1,4 +1,4 @@
-101
+101 [![Build Status](https://travis-ci.org/tjmehta/101.svg?branch=master)](https://travis-ci.org/tjmehta/101)
 ===
 
 common utils that can be required selectively
