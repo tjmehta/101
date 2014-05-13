@@ -37,6 +37,11 @@ describe('findIndex', function () {
     delete this.str;
     done();
   });
+  it('should return -1 in an empty list', function (done) {
+    var arr = [];
+    expect(findIndex(arr, function (v) { return v === 1; })).to.equal(-1);
+    done();
+  });
   it('should get the index of an item in an array/string that passes a given function', function (done) {
     var arr = this.arr;
     expect(findIndex(arr, isObject)).to.equal(0);
