@@ -3,6 +3,7 @@
  */
 
 var isFunction = require('./is-function');
+var exists = require('./exists');
 var isArray = Array.isArray;
 
 /**
@@ -14,7 +15,7 @@ var isArray = Array.isArray;
  * @return {number|function} Index of item which passes predicate or Partial isFunction (which accepts list)
  */
 module.exports = function (list, predicate) {
-  if (list && 'length' in list && !isFunction(list)) {
+  if (exists(list && list.length) && !isFunction(list)) {
     return findIndex(list, predicate);
   }
   else if (isFunction(list)) {
@@ -29,7 +30,7 @@ module.exports = function (list, predicate) {
 };
 
 function findIndex (list, predicate) {
-  if (!list || !('length' in list)) {
+  if (!exists(list && list.length)) {
     throw new TypeError('list must be have length property');
   }
   if (!isFunction(predicate)) {

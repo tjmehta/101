@@ -16,7 +16,7 @@ module.exports = last;
 
 function last (item) {
   var val;
-  if (exists(item && ('length' in item)) && !isFunction(item)) {
+  if (exists(item && item.length) && !isFunction(item)) {
     val = item[item.length - 1];
   }
   else if (isObject(item)) {
