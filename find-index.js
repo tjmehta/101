@@ -31,7 +31,7 @@ module.exports = function (list, predicate) {
 
 function findIndex (list, predicate) {
   if (!exists(list && list.length)) {
-    throw new TypeError('list must be have length property');
+    throw new TypeError('list must have length property');
   }
   if (!isFunction(predicate)) {
     throw new TypeError('predicate must be a function');

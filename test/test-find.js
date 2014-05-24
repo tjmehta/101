@@ -8,9 +8,9 @@ var isArray = Array.isArray;
 var isObject = require('../is-object');
 var isFunction = require('../is-function');
 
-var findIndex = require('../find-index');
+var find = require('../find');
 
-describe('findIndex', function () {
+describe('find', function () {
   beforeEach(function (done) {
     this.arr = [
       {
@@ -39,50 +39,51 @@ describe('findIndex', function () {
   });
   it('should return -1 in an empty list', function (done) {
     var arr = [];
-    expect(findIndex(arr, function (v) { return v === 1; })).to.equal(-1);
+    expect(find(arr, function (v) { return v === 1; })).to.eql(null);
     done();
   });
   it('should get the index of an item in an array/string that passes a given function', function (done) {
     var arr = this.arr;
-    expect(findIndex(arr, isObject)).to.equal(0);
-    expect(findIndex(arr, isArray)).to.equal(2);
-    expect(findIndex(arr, isFunction)).to.equal(-1);
+    expect(find(arr, isObject)).to.equal(arr[0]);
+    expect(find(arr, isArray)).to.equal(arr[2]);
+    expect(find(arr, isFunction)).to.eql(null);
     done();
   });
   it('should get the index of an item in an array/string that passes a given function when used with map', function (done) {
     var arr = this.arr;
-    expect([arr].map(findIndex(isObject))).to.eql([0]);
-    expect([arr].map(findIndex(isArray))).to.eql([2]);
-    expect([arr].map(findIndex(isFunction))).to.eql([-1]);
+    expect([arr].map(find(isObject))).to.eql([arr[0]]);
+    expect([arr].map(find(isArray))).to.eql([arr[2]]);
+    expect([arr].map(find(isFunction))).to.eql([null]);
     done();
   });
   it('should error when given invalid arguments', function (done) {
     try {
-      findIndex({});
+      find({});
     }
     catch (err) {
       expect(err.message).to.equal('first argument must be a list (have length) or function');
     }
     try {
-      findIndex();
+      find();
     }
     catch (err) {
       expect(err.message).to.equal('first argument must be a list (have length) or function');
     }
     try {
-      findIndex(this.arr, {});
+      find(this.arr, {});
     }
     catch (err) {
       expect(err.message).to.equal('predicate must be a function');
     }
     try {
-      findIndex(isArray)({});
+      console.log('prefind');
+      find(isArray)({});
     }
     catch (err) {
       expect(err.message).to.equal('list must have length property');
     }
     try {
-      findIndex(isArray)();
+      find(isArray)();
     }
     catch (err) {
       expect(err.message).to.equal('list must have length property');
