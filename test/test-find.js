@@ -76,7 +76,6 @@ describe('find', function () {
       expect(err.message).to.equal('predicate must be a function');
     }
     try {
-      console.log('prefind');
       find(isArray)({});
     }
     catch (err) {
