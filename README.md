@@ -251,6 +251,17 @@ pluck(obj, 'foo'); // 1
 
 // use it with array.map
 [obj, obj, obj].map(pluck('foo')); // [1, 1, 1]
+
+// supports keypaths by default
+var obj = {
+  foo: {
+    bar: 1
+  },
+  'foo.bar': 2
+};
+
+pluck(obj, 'foo.bar'); // 1
+pluck(obj, 'foo.bar', false); // 2
 ```
 
 ## License

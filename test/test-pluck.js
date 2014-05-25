@@ -53,4 +53,35 @@ describe('pluck', function () {
     ]);
     done();
   });
+  describe('isKeypath', function() {
+    var objs = [{
+      foo: {
+        bar: 1
+      },
+      'foo.bar': 2
+    }];
+    var obj = objs[0];
+    describe('true and default', function (done) {
+      it('should pluck a keypath from an object', function (done) {
+        expect(pluck(obj, 'foo.bar')).to.equal(1);
+        expect(pluck(obj, 'foo.bar', true)).to.equal(1);
+        done();
+      });
+      it('should pluck keypaths from objects in an array when used with map', function (done) {
+        expect(objs.map(pluck('foo.bar'))).to.eql([1]);
+        expect(objs.map(pluck('foo.bar', true))).to.eql([1]);
+        done();
+      });
+    });
+    describe('false', function (done) {
+      it('should pluck a key from an object', function (done) {
+        expect(pluck(obj, 'foo.bar', false)).to.equal(2);
+        done();
+      });
+      it('should pluck keys from objects in an array when used with map', function (done) {
+        expect(objs.map(pluck('foo.bar', false))).to.eql([2]);
+        done();
+      });
+    });
+  });
 });
