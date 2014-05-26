@@ -264,6 +264,31 @@ pluck(obj, 'foo.bar'); // 1
 pluck(obj, 'foo.bar', false); // 2
 ```
 
+## set
+
+Functional version of obj[key] = val, returns a new obj with the key and value set.
+
+```js
+var set = require('101/set');
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+set(obj, 'foo'); // 1
+
+// use it with array.map
+[obj, obj, obj].map(set('foo', 100)); // [{ foo: 100, bar: 2 }, {same}, {same}]
+
+// supports keypaths by default
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+set(obj, 'foo', 100); // { foo: 100, bar:2 }
+```
+
 ## License
 
 MIT
