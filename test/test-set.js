@@ -22,7 +22,7 @@ describe('set', function () {
     expected[key] = val;
 
     expect(set(obj, key, val)).to.eql(expected);
-    expect(obj[key]).to.equal(1); // original obj untouched
+    expect(obj[key]).to.equal(100); // original obj modified
     done();
   });
   it('should pluck keys from objects in an array when used with map', function(done) {
@@ -50,7 +50,7 @@ describe('set', function () {
       return out;
     });
     expect(objs.map(set(key, val))).to.eql(expected);
-    expect(objs.map(pluck('bar'))).to.eql([1,2,3]); // original objs untouched
+    expect(objs.map(pluck('bar'))).to.eql([100, 100, 100]); // original obj modified
     done();
   });
 });

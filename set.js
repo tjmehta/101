@@ -2,7 +2,6 @@
  * @module 101/set
  */
 
-var clone = require('clone');
 var exists = require('./exists');
 var keypather = require('keypather')();
 
@@ -29,7 +28,6 @@ module.exports = function (obj, key, val) {
 };
 
 function set (obj, key, val) {
-  var out = clone(obj);
-  out[key] = val;
-  return out;
+  obj[key] = val;
+  return obj;
 }
