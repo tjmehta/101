@@ -30,12 +30,11 @@
   },
   "homepage": "https://github.com/tjmehta/101",
   "devDependencies": {
-    "lab": "~3.0.1",
-    "clone": "~0.1.15"
+    "lab": "^3.2.1"
   },
   "dependencies": {
+    "clone": "^0.1.17",
     "deep-eql": "^0.1.3",
-    "keypather": "^1.6.0",
-    "lab": "~3.1.1"
+    "keypather": "^1.6.0"
   }
 }
