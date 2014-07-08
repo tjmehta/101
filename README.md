@@ -261,6 +261,20 @@ pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
 [obj, obj, obj].map(pick('foo')); // [{ foo: 1 }, { foo: 1 }, { foo: 1 }];
 ```
 
+## clone
+
+It's [clone](https://www.npmjs.org/package/clone).
+
+```js
+var clone = require('101/clone');
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+clone(obj); // { foo: 1, bar: 2 }
+```
+
 ## omit
 
 Returns a new object without the specified keys.

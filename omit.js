@@ -3,6 +3,7 @@
  */
 
 var isObject = require('./is-object');
+var clone = require('./clone');
 
 /**
  * Returns a new object without the specified keys.
@@ -30,8 +31,9 @@ function omit (obj, args) {
   args.forEach(function (key) {
     keys = keys.concat(key);
   });
-  keys.forEach(remove(obj));
-  return obj;
+  var out = clone(obj);
+  keys.forEach(remove(out));
+  return out;
 }
 
 function remove (obj) {
