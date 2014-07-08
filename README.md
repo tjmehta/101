@@ -25,6 +25,20 @@ and(true, false); // false
 and(true, true);  // true
 ```
 
+## clone
+
+It's [clone](https://www.npmjs.org/package/clone).
+
+```js
+var clone = require('101/clone');
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+clone(obj); // { foo: 1, bar: 2 }
+```
+
 ## envIs
 
 Functional version of str === process.env.NODE_ENV
@@ -210,6 +224,25 @@ not(isString)('hey'); // false
 not(isString)(100);   // true
 ```
 
+## omit
+
+Returns a new object without the specified keys.
+
+```js
+var omit = require('101/omit');
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+omit(obj, 'foo');          // { bar: 1 }
+omit(obj, ['foo']);        // { bar: 1 }
+omit(obj, ['foo', 'bar']); // { }
+
+// use it with array.map
+[obj, obj, obj].map(omit('foo')); // [{ bar: 1 }, { bar: 1 }, { bar: 1 }];
+```
+
 ## or
 
 Functional version of ||
@@ -259,39 +292,6 @@ pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
 
 // use it with array.map
 [obj, obj, obj].map(pick('foo')); // [{ foo: 1 }, { foo: 1 }, { foo: 1 }];
-```
-
-## clone
-
-It's [clone](https://www.npmjs.org/package/clone).
-
-```js
-var clone = require('101/clone');
-var obj = {
-  foo: 1,
-  bar: 2
-};
-
-clone(obj); // { foo: 1, bar: 2 }
-```
-
-## omit
-
-Returns a new object without the specified keys.
-
-```js
-var omit = require('101/omit');
-var obj = {
-  foo: 1,
-  bar: 2
-};
-
-omit(obj, 'foo');          // { bar: 1 }
-omit(obj, ['foo']);        // { bar: 1 }
-omit(obj, ['foo', 'bar']); // { }
-
-// use it with array.map
-[obj, obj, obj].map(omit('foo')); // [{ bar: 1 }, { bar: 1 }, { bar: 1 }];
 ```
 
 ## pluck
