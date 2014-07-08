@@ -261,6 +261,25 @@ pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
 [obj, obj, obj].map(pick('foo')); // [{ foo: 1 }, { foo: 1 }, { foo: 1 }];
 ```
 
+## omit
+
+Returns a new object without the specified keys.
+
+```js
+var omit = require('101/omit');
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+omit(obj, 'foo');          // { bar: 1 }
+omit(obj, ['foo']);        // { bar: 1 }
+omit(obj, ['foo', 'bar']); // { }
+
+// use it with array.map
+[obj, obj, obj].map(omit('foo')); // [{ bar: 1 }, { bar: 1 }, { bar: 1 }];
+```
+
 ## pluck
 
 Functional version of obj[key], returns the value of the key from obj.
