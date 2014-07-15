@@ -4,6 +4,9 @@
 
 var exists = require('./exists');
 var keypather = require('keypather')();
+var extend = require('extend');
+var isString = require('./is-string');
+var isObject = require('./is-object');
 
 /**
  * Functional version of obj[key] = val.
@@ -15,19 +18,37 @@ var keypather = require('keypather')();
  * @return {*|function} New obj with new value set or Partial-function set (which accepts obj) and returns a new obj with val set
  */
 module.exports = function (obj, key, val) {
-  if (arguments.length === 2) {
-    val = key;
-    key = obj;
+  var setObj;
+  if (arguments.length === 1) {
+    // (setObj)
+    setObj = obj;
     return function (obj) {
-      return set(obj, key, val);
+      return extend(obj, setObj); // extends original
     };
   }
+  if (arguments.length === 2) {
+    if (isString(obj) || typeof obj === 'number') {
+      // (key, val)
+      val = key;
+      key = obj;
+      setObj = {};
+      setObj[key] = val;
+      return function (obj) {
+        return extend(obj, setObj); // extends original
+      };
+    }
+    else if (isObject(key)) {
+      // (obj, setObj)
+      setObj = key;
+      return extend(obj, setObj); // extends original
+    }
+    else {
+      throw new TypeError('Invalid arguments: expected str, val or val, obj');
+    }
+  }
   else {
-    return set(obj, key, val);
+    setObj = {};
+    setObj[key] = val;
+    return extend(obj, setObj); // extends original
   }
 };
-
-function set (obj, key, val) {
-  obj[key] = val;
-  return obj;
-}

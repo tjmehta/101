@@ -11,8 +11,9 @@ var isFunction = require('../is-function');
 var find = require('../find');
 
 describe('find', function () {
+  var ctx = {};
   beforeEach(function (done) {
-    this.arr = [
+    ctx.arr = [
       {
         bar: 1
       },
@@ -29,12 +30,12 @@ describe('find', function () {
         goo: 3
       }
     ];
-    this.str = 'hello';
+    ctx.str = 'hello';
     done();
   });
   afterEach(function (done) {
-    delete this.arr;
-    delete this.str;
+    delete ctx.arr;
+    delete ctx.str;
     done();
   });
   it('should return -1 in an empty list', function (done) {
@@ -43,14 +44,14 @@ describe('find', function () {
     done();
   });
   it('should get the index of an item in an array/string that passes a given function', function (done) {
-    var arr = this.arr;
+    var arr = ctx.arr;
     expect(find(arr, isObject)).to.equal(arr[0]);
     expect(find(arr, isArray)).to.equal(arr[2]);
     expect(find(arr, isFunction)).to.eql(null);
     done();
   });
   it('should get the index of an item in an array/string that passes a given function when used with map', function (done) {
-    var arr = this.arr;
+    var arr = ctx.arr;
     expect([arr].map(find(isObject))).to.eql([arr[0]]);
     expect([arr].map(find(isArray))).to.eql([arr[2]]);
     expect([arr].map(find(isFunction))).to.eql([null]);
@@ -70,7 +71,7 @@ describe('find', function () {
       expect(err.message).to.equal('first argument must be a list (have length) or function');
     }
     try {
-      find(this.arr, {});
+      find(ctx.arr, {});
     }
     catch (err) {
       expect(err.message).to.equal('predicate must be a function');

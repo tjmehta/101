@@ -10,32 +10,32 @@ var isFunction = require('../is-function');
 var passAny = require('../pass-any');
 
 describe('passAny', function () {
+  var ctx = {};
   before(function (done) {
-    this.arr = [true, 'foo', 'bar', 'qux'];
-    this.ctx = { foo: 1 };
+    ctx.arr = [true, 'foo', 'bar', 'qux'];
+    ctx.ctx = { foo: 1 };
     done();
   });
   after(function (done) {
-    delete this.arr;
-    delete this.ctx;
+    delete ctx.arr;
+    delete ctx.ctx;
     done();
   });
   it('should work with array functions', function(done) {
-    expect(this.arr.filter(passAny(isString, isFunction)))
-      .eql(this.arr.filter(isStringOrFunction));
+    expect(ctx.arr.filter(passAny(isString, isFunction)))
+      .eql(ctx.arr.filter(isStringOrFunction));
     done();
   });
   it('should apply its context to the functions', function(done) {
-    var self = this;
-    this.arr.forEach(passAny(checkContext).bind(this.ctx));
+    ctx.arr.forEach(passAny(checkContext).bind(ctx.ctx));
     done();
     function checkContext () {
-      return expect(this).to.equal(self.ctx);
+      return expect(this).to.equal(ctx.ctx);
     }
   });
   it('should throw an error if it receives non-function args', function(done) {
     try {
-      this.arr.forEach(passAny(true, false));
+      ctx.arr.forEach(passAny(true, false));
     }
     catch (err) {
       expect(err.message).to.equal('all funcs should be functions');

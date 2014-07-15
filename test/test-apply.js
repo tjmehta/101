@@ -8,41 +8,43 @@ var after = Lab.after;
 var apply = require('../apply');
 
 describe('apply', function () {
+  var ctx = {};
   before(function (done) {
-    this.args = [1,2,3];
+    ctx.args = [1,2,3];
     done();
   });
   after(function (done) {
-    delete this.args;
+    delete ctx.args;
     done();
   });
   it('should apply context and arguments to a function - working array functions', function (done) {
-    expect([sum].map(apply(this.args))).to.eql([sum.apply(null, this.args)]);
+    expect([sum].map(apply(null, ctx.args))).to.eql([sum.apply(null, ctx.args)]);
     done();
   });
   describe('context', function() {
     before(function (done) {
-      this.ctx = { foo: 1 };
+      ctx.ctx = { foo: 1 };
       done();
     });
     after(function (done) {
-      delete this.ctx;
+      delete ctx.ctx;
       done();
     });
     it('should apply context and arguments to a function - working array functions', function (done) {
-      var self = this;
-      apply(this.ctx)(checkContext);
+      var context = {};
+      apply(context)(checkContext);
       done();
       function checkContext () {
-        return expect(this).to.equal(self.ctx);
+        return expect(this).to.equal(context);
       }
     });
   });
 });
 
 function sum (/* args */) {
-  args.reduce(function (memo, item) {
+  var args = Array.prototype.slice.call(arguments);
+  return args.reduce(function (memo, item) {
     return memo + item;
-  });
+  }, 0);
 }
 
