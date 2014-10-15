@@ -1,8 +1,9 @@
 var Lab = require('lab');
-var describe = Lab.experiment;
-var it = Lab.test;
-var expect = Lab.expect;
+var lab = exports.lab = Lab.script();
 
+var describe = lab.describe;
+var it = lab.it;
+var expect = Lab.expect;
 var clone = require('clone');
 var set = require('../set');
 var pluck = require('../pluck');

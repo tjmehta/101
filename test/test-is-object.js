@@ -1,6 +1,8 @@
 var Lab = require('lab');
-var describe = Lab.experiment;
-var it = Lab.test;
+var lab = exports.lab = Lab.script();
+
+var describe = lab.describe;
+var it = lab.it;
 var expect = Lab.expect;
 
 var isObject = require('../is-object');

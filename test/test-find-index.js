@@ -1,8 +1,10 @@
 var Lab = require('lab');
-var describe = Lab.experiment;
-var it = Lab.test;
-var beforeEach = Lab.beforeEach;
-var afterEach = Lab.afterEach;
+var lab = exports.lab = Lab.script();
+
+var describe = lab.describe;
+var it = lab.it;
+var beforeEach = lab.beforeEach;
+var afterEach = lab.afterEach;
 var expect = Lab.expect;
 var isArray = Array.isArray;
 var isObject = require('../is-object');
