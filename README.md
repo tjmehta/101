@@ -1,7 +1,23 @@
 101 [![Build Status](https://travis-ci.org/tjmehta/101.svg?branch=master)](https://travis-ci.org/tjmehta/101)
 ===
 
-common utils that can be required selectively
+# Why another JS util library?
+### 1) 101 will be maintained to minimize overlap with vanilla JS. 
+* 101 utils are made to work well will vanilla JS methods.
+* Underscore/lodash - forEach, map, reduce, filter, sort, and more duplicate ES5)
+
+### 2) No need for custom builds.
+* With 101, import naturally, and what you use will be bundled.
+* Each util method is a module that can be required `require('101/<util>')`.
+* Currently node/browserify is supported, I will add other module system support on request.
+* Underscore/lodash is large, and you have to manually create custom builds when if you're 
+trying to optimize for size.
+
+# Installation
+
+`npm install 101`
+
+# Usage
 
 ## and
 
