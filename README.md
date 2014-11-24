@@ -232,6 +232,14 @@ last({
 });              // 2
 ```
 
+## noop
+
+No-op function
+
+```js
+require('101/noop'); // function () {}
+```
+
 ## not
 
 Functional version of !
