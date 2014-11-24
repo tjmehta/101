@@ -95,6 +95,23 @@ exists(null);      // false
 exists(undefined); // false
 ```
 
+## find
+
+Just like ES6's array.find
+
+Finds the first value in the list that passes the given function (predicate) and returns it.
+If list is not provided find will return a partial-function which accepts a list as the first argument.
+
+```js
+var find = require('101/find');
+var hasPropss = require('101/has-properties');
+var arr = [{ a: 1, b: 1 }, { b: 1 }, { c: 1 }];
+
+var index = find(arr, hasProps({ a:1 }));
+// returns { a: 1, b: 1 }
+// returns null if not found
+```
+
 ## findIndex
 
 Just like ES6's array.findIndex
