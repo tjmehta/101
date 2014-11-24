@@ -7,7 +7,9 @@
 # Why another JS util library?
 ### 1) 101 will be maintained to minimize overlap with vanilla JS. 
 * 101 utils are made to work well with vanilla JS methods.
-* Underscore/lodash - forEach, map, reduce, filter, sort, and more duplicate ES5)
+* 101 will only duplicate vanilla JS to provide functional programming paradigms or 
+if the method is not available in a widely supported JS version (currently ES5).
+* Underscore/lodash - duplicates a lot of ES5: forEach, map, reduce, filter, sort, and more.
 
 ### 2) No need for custom builds.
 * With 101, import naturally, and what you use will be bundled.
