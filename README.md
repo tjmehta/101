@@ -104,7 +104,7 @@ If list is not provided find will return a partial-function which accepts a list
 
 ```js
 var find = require('101/find');
-var hasPropss = require('101/has-properties');
+var hasProps = require('101/has-properties');
 var arr = [{ a: 1, b: 1 }, { b: 1 }, { c: 1 }];
 
 var index = find(arr, hasProps({ a:1 }));
