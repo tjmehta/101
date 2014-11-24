@@ -1,6 +1,7 @@
-101 [![Build Status](https://travis-ci.org/tjmehta/101.svg?branch=master)](https://travis-ci.org/tjmehta/101)
+![101](http://i.imgur.com/MFrmMt6.png)
 ===
 [![NPM](https://nodei.co/npm/101.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/101/)
+[![Build Status](https://travis-ci.org/tjmehta/101.svg?branch=master)](https://travis-ci.org/tjmehta/101)
 
 # Why another JS util library?
 ### 1) 101 will be maintained to minimize overlap with vanilla JS. 
