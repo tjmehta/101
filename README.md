@@ -76,11 +76,11 @@ envIs('development', 'production'); // true
 Functional version of === , supports partial functionality
 
 ```js
-var exists = require('101/exists');
+var equals = require('101/exists');
 
-exists(1, 1);            // true
+equals(1, 1);            // true
 [1,2,3].some(equals(1)); // true
-exists(1, '1');          // false
+equals(1, '1');          // false
 ```
 
 ## exists
