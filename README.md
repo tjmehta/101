@@ -63,7 +63,7 @@ clone(obj); // { foo: 1, bar: 2 }
 Functional version of str === process.env.NODE_ENV
 
 ```js
-var exists = require('101/exists');
+var envIs = require('101/envIs');
 // process.env.NODE_ENV = development
 envIs('development');     // true
 envIs('production');      // false
