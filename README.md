@@ -40,8 +40,7 @@ Functional version of function.apply
 ```js
 var apply = require('101/apply');
 
-and(true, false); // false
-and(true, true);  // true
+apply('chai', ['mocha','latte']); // ['mocha','latte','chai']
 ```
 
 ## clone
