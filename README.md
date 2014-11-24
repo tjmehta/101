@@ -39,7 +39,8 @@ Functional version of function.apply
 
 ```js
 var apply = require('101/apply');
-
+[sum].map(apply(null, [1, 2, 3])); // [6] = [sum(1,2,3)] = [1+2+3]
+function sum () {  /* sums all arguments */ }
 apply({ prop: 'val' })(function () { return this.prop; });  // 'val'
 ```
 
