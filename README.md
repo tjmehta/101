@@ -233,7 +233,7 @@ Functional version of val typeof 'string'
 ```js
 var isString = require('101/is-string');
 
-[{}, { foo: 1 }, 100].map(isString); // [true, true, false]
+['foo', 'bar', 1].map(isString); // [true, true, false]
 ```
 
 ## last
