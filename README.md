@@ -37,7 +37,8 @@ and(true, true);  // true
 
 ## apply
 
-Functional version of function.apply.
+Functional version of `function.apply`.
+Supports partial functionality (great with array functions).
 
 ```js
 var apply = require('101/apply');
