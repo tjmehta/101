@@ -13,5 +13,12 @@
 module.exports = or;
 
 function or (a, b) {
-  return a || b;
+  if (arguments.length == 2) {
+    return a || b;
+  }
+  var result = false;
+  for (var i = 0; i < arguments.length; i++) {
+    result = result || arguments[i];
+  }
+  return result;
 }
