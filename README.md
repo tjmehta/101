@@ -231,9 +231,9 @@ var isObject = require('101/is-object');
 Functional version of val typeof 'string'
 
 ```js
-var isObject = require('101/is-object');
+var isString = require('101/is-string');
 
-[{}, { foo: 1 }, 100].map(isObject); // [true, true, false]
+[{}, { foo: 1 }, 100].map(isString); // [true, true, false]
 ```
 
 ## last
