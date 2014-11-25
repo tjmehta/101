@@ -12,5 +12,12 @@
 module.exports = and;
 
 function and (a, b) {
-  return a && b;
+  if (arguments.length == 2) {
+    return a && b;
+  }
+  var result = true;
+  for (var i = 0; i < arguments.length; i++) {
+    result = result && arguments[i];
+  }
+  return result;
 }
