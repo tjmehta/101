@@ -9,14 +9,13 @@
 * 101 utils are made to work well with vanilla JS methods.
 * 101 will only duplicate vanilla JS to provide Functional Programming paradigms, or if  
 the method is not available in a widely supported JS version (currently ES5).
-* Underscore/lodash - duplicates a lot of ES5: forEach, map, reduce, filter, sort, and more.
+* Other libraries often duplicate a lot of ES5: forEach, map, reduce, filter, sort, and more.
 
 ### 2) No need for custom builds.
 * With 101, import naturally, and what you use will be bundled.
 * Each util method is a module that can be required `require('101/<util>')`.
 * Currently node/browserify is supported, I will add other module system support on request.
-* Underscore/lodash is large, and you have to manually create custom builds when if you're 
-trying to optimize for size.
+* Other libraries can be large, and require manually creating custom builds when optimizing for size.
 
 # Installation
 
