@@ -7,8 +7,8 @@
 # Why another JS util library?
 ### 1) 101 will be maintained to minimize overlap with vanilla JS. 
 * 101 utils are made to work well with vanilla JS methods.
-* 101 will only duplicate vanilla JS to provide functional programming paradigms or 
-if the method is not available in a widely supported JS version (currently ES5).
+* 101 will only duplicate vanilla JS to provide Functional Programming paradigms, or if  
+the method is not available in a widely supported JS version (currently ES5).
 * Underscore/lodash - duplicates a lot of ES5: forEach, map, reduce, filter, sort, and more.
 
 ### 2) No need for custom builds.
@@ -26,7 +26,7 @@ trying to optimize for size.
 
 ## and
 
-Functional version of &&
+Functional version of `&&`. Works great with `array.reduce`.
 
 ```js
 var and = require('101/and');
@@ -37,7 +37,7 @@ and(true, true);  // true
 
 ## apply
 
-Functional version of function.apply
+Functional version of function.apply.
 
 ```js
 var apply = require('101/apply');
@@ -62,7 +62,8 @@ clone(obj); // { foo: 1, bar: 2 }
 
 ## envIs
 
-Functional version of str === process.env.NODE_ENV
+Functional version of `str === process.env.NODE_ENV`. 
+Or's multiple environments.
 
 ```js
 var envIs = require('101/env-is');
@@ -75,7 +76,8 @@ envIs('development', 'production'); // true
 
 ## equals
 
-Functional version of === , supports partial functionality
+Functional version of `===`.  
+Supports partial functionality (great with array functions).
 
 ```js
 var equals = require('101/equals');
@@ -87,7 +89,7 @@ equals(1, '1');          // false
 
 ## exists
 
-Simple exists function
+Simple exists function.
 
 ```js
 var exists = require('101/exists');
@@ -99,9 +101,9 @@ exists(undefined); // false
 
 ## find
 
-Just like ES6's array.find
+Just like ES6's `array.find`.
 
-Finds the first value in the list that passes the given function (predicate) and returns it.
+Finds the first value in the list that passes the given function (predicate) and returns it.  
 If list is not provided find will return a partial-function which accepts a list as the first argument.
 
 ```js
@@ -109,16 +111,16 @@ var find = require('101/find');
 var hasProps = require('101/has-properties');
 var arr = [{ a: 1, b: 1 }, { b: 1 }, { c: 1 }];
 
-var index = find(arr, hasProps({ a:1 }));
+var item = find(arr, hasProps({ a:1 }));
 // returns { a: 1, b: 1 }
 // returns null if not found
 ```
 
 ## findIndex
 
-Just like ES6's array.findIndex
+Just like ES6's `array.findIndex`.
 
-Finds the first value in the list that passes the given function (predicate) and returns it's index.
+Finds the first value in the list that passes the given function (predicate) and returns it's index.  
 If list is not provided findIndex will return a partial-function which accepts a list as the first argument.
 
 ```js
@@ -134,7 +136,8 @@ var index = findIndex(arr, function (val, i, arr) {
 
 ## hasKeypaths
 
-Determines whether the keypaths exist and have the specified values.
+Determines whether the keypaths exist and have the specified values.  
+Supports partial functionality (great with array functions, and 101/find).
 
 ```js
 var hasKeypaths = require('101/has-keypaths');
@@ -159,14 +162,19 @@ hasKeypaths(obj, { 'foo.bar': barObj }, true);   // true
 hasKeypaths(obj, { 'foo.bar': barObj }, false);  // false
 hasKeypaths(obj, { 'foo.bar': obj.foo }, false); // true
 hasKeypaths(obj, ['foo.bar'], false);            // true, uses [hasOwnProperty vs in](http://stackoverflow.com/questions/13632999/if-key-in-object-or-ifobject-hasownpropertykey)
+// use it with find, findIndex, or filter!
+var arr = [obj, { b: 1 }, { c: 1 }];
+find(arr, hasProps({ 'foo.bar.qux':1 })); // { foo: { bar: { qux: 1 } } }
+find(arr, hasProps(['foo.bar.qux']));     // { foo: { bar: { qux: 1 } } }
 ```
 
 ## hasProperties
 
-Determines whether the keys exist and, if specified, has the values.
+Determines whether the keys exist and, if specified, has the values.  
+Supports partial functionality (great with array functions, and 101/find).
 
 ```js
-var hasProperties = require('101/has-properties');
+var hasProps = require('101/has-properties');
 var obj = {
   foo: {
     bar: 1
@@ -174,21 +182,25 @@ var obj = {
   qux: 1
 };
 
-hasProperties(obj, ['foo', 'qux']); // true
-hasProperties(obj, { qux: 1 }) // true
+hasProps(obj, ['foo', 'qux']); // true
+hasProps(obj, { qux: 1 }) // true
 
 // optional 'deep' arg, defaults to true
 var barObj = { bar: 1 };
-hasProperties(obj, { 'foo.bar': barObj });         // true
-hasProperties(obj, { 'foo.bar': barObj }, true);   // true
-hasProperties(obj, { 'foo.bar': barObj }, false);  // false
-hasProperties(obj, ['foo.bar'], false);            // true, uses [hasOwnProperty vs in](http://stackoverflow.com/questions/13632999/if-key-in-object-or-ifobject-hasownpropertykey)
+hasProps(obj, { 'foo.bar': barObj });         // true
+hasProps(obj, { 'foo.bar': barObj }, true);   // true
+hasProps(obj, { 'foo.bar': barObj }, false);  // false
+hasProps(obj, ['foo.bar'], false);            // true, uses [hasOwnProperty vs in](http://stackoverflow.com/questions/13632999/if-key-in-object-or-ifobject-hasownpropertykey)
+// use it with find, findIndex, or filter!
+var arr = [{ a: 1, b: 1 }, { b: 1 }, { c: 1 }];
+find(arr, hasProps({ a:1 })); // { a: 1, b: 1 }
+find(arr, hasProps(['a']));   // { a: 1, b: 1 }
 ```
 
 ## instanceOf
 
-Functional version of JavaScript's instanceof, returns a
-partial function which expects a value argument and returns
+Functional version of JavaScript's instanceo.  
+Supports partial functionality (great with array functions).
 
 ```js
 var instanceOf = require('101/instance-of');
@@ -198,7 +210,8 @@ var instanceOf = require('101/instance-of');
 
 ## isBoolean
 
-Functional version of val typeof 'boolean'
+Functional version of `typeof val === 'boolean'`.  
+Supports partial functionality (great with array functions).
 
 ```js
 var isBoolean = require('101/is-boolean');
@@ -208,7 +221,7 @@ var isBoolean = require('101/is-boolean');
 
 ## isFunction
 
-Functional version of val typeof 'function'
+Functional version of `typeof val === 'function'`
 
 ```js
 var isFunction = require('101/is-function');
@@ -238,7 +251,7 @@ var isString = require('101/is-string');
 
 ## last
 
-Returns the last value of the item.
+Returns the last value of a list
 
 ```js
 var last = require('101/last');
@@ -261,7 +274,7 @@ require('101/noop'); // function () {}
 
 ## not
 
-Functional version of !
+Functional version of `!`.
 
 ```js
 var not = require('101/not');
@@ -272,7 +285,8 @@ not(isString)(100);   // true
 
 ## omit
 
-Returns a new object without the specified keys.
+Returns a new object without the specified keys.  
+Supports partial functionality (great with array functions, like map).
 
 ```js
 var omit = require('101/omit');
@@ -291,7 +305,8 @@ omit(obj, ['foo', 'bar']); // { }
 
 ## or
 
-Functional version of ||
+Functional version of `||`.
+Works great with `array.reduce`.
 
 ```js
 var or = require('101/or');
@@ -303,7 +318,8 @@ or(false, false); // false
 
 ## passAll
 
-Muxes arguments across many functions and &&'s the results
+Muxes arguments across many functions and `&&`'s the results.  
+Supports partial functionality (great with array functions, like map).
 
 ```js
 var passAll = require('101/pass-all');
@@ -313,7 +329,8 @@ var passAll = require('101/pass-all');
 
 ## passAny
 
-Muxes arguments across many functions and ||'s the results
+Muxes arguments across many functions and `||`'s the results.  
+Supports partial functionality (great with array functions, like map).
 
 ```js
 var passAny = require('101/pass-any');
@@ -323,7 +340,8 @@ var passAny = require('101/pass-any');
 
 ## pick
 
-Returns a new object with the specified keys (with key values from obj)
+Returns a new object with the specified keys (with key values from obj).  
+Supports partial functionality (great with array functions, like map).
 
 ```js
 var pick = require('101/pick');
@@ -342,7 +360,8 @@ pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
 
 ## pluck
 
-Functional version of obj[key], returns the value of the key from obj.
+Functional version of obj[key], returns the value of the key from obj.  
+Supports partial functionality (great with array functions, like map).
 
 ```js
 var pluck = require('101/pluck');
@@ -364,13 +383,14 @@ var obj = {
   'foo.bar': 2
 };
 
-pluck(obj, 'foo.bar'); // 1
-pluck(obj, 'foo.bar', false); // 2
+pluck(obj, 'foo.bar'); // 1, supports keypaths by default
+pluck(obj, 'foo.bar', false); // 2, pass false to not use keypaths
 ```
 
 ## set
 
-Functional version of obj[key] = val, returns a new obj with the key and value set.
+Functional version of obj[key] = val, returns a new obj with the key and value set.  
+Supports partial functionality (great with array functions, like map).
 
 ```js
 var set = require('101/set');
