@@ -4,7 +4,6 @@
 
 var isFunction = require('./is-function');
 var exists = require('./exists');
-var isArray = Array.isArray;
 
 /**
  * Finds the first value in the list that passes the given function (predicate) and returns it's index.

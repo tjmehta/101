@@ -9,6 +9,8 @@
  * @param val {*} - value to be existance checked
  * @return {boolean} whether the value exists or not
  */
-module.exports = function exists (val) {
+module.exports = exists;
+
+function exists (val) {
   return val !== undefined && val !== null;
-};
+}
