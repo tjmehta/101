@@ -199,7 +199,7 @@ find(arr, hasProps(['a']));   // { a: 1, b: 1 }
 
 ## instanceOf
 
-Functional version of JavaScript's instanceo.  
+Functional version of JavaScript's instanceof.  
 Supports partial functionality (great with array functions).
 
 ```js
