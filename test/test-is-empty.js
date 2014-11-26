@@ -8,14 +8,14 @@ var expect = Lab.expect;
 var isEmpty = require('../is-empty');
 
 describe('isEmpty', function () {
-  it('should return true for empty object', function(done) {
+  it('should return true for empty', function(done) {
       expect(isEmpty([])).to.be.true;
       expect(isEmpty("")).to.be.true;
       expect(isEmpty(" ")).to.be.true;
       expect(isEmpty({})).to.be.true;
       done();
   });
-  it('should return false for non-empty-object', function(done) {
+  it('should return false for non-empty', function(done) {
       expect(isEmpty({x : "y"})).to.be.false;
       expect(isEmpty("a")).to.be.false;
       expect(isEmpty(" a")).to.be.false;
