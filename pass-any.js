@@ -3,8 +3,6 @@
  */
 
 var isFunction = require('./is-function');
-var and = require('./and');
-var apply = require('./apply');
 
 /**
  * Muxes arguments across many functions and ||'s the results

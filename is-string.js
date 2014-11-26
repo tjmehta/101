@@ -9,6 +9,8 @@
  * @param {*} val - value checked to be a string
  * @return {boolean} Whether the value is an string or not
  */
-module.exports = function (val) {
+module.exports = isString;
+
+function isString (val) {
   return typeof val === 'string';
-};
+}

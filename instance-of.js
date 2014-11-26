@@ -12,8 +12,10 @@
  */
 
 // (function)(val)
-module.exports = function (Class) {
+module.exports = instanceOf;
+
+function instanceOf (Class) {
   return function (val) {
     return val instanceof Class;
   };
-};
+}

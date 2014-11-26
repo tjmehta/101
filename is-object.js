@@ -10,6 +10,8 @@
  */
 var exists = require('./exists');
 
-module.exports = function (val) {
+module.exports = isObject;
+
+function isObject (val) {
   return typeof val === 'object' && exists(val) && !Array.isArray(val) && !(val instanceof RegExp);
-};
+}

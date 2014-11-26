@@ -5,7 +5,6 @@
 var isFunction = require('./is-function');
 var exists = require('./exists');
 var findIndex = require('./find-index');
-var isArray = Array.isArray;
 
 /**
  * Finds the first value in the list that passes the given function (predicate) and returns it's index.
@@ -15,7 +14,9 @@ var isArray = Array.isArray;
  * @param {array|string} predicate - executed on each item in the list and returns true when the item is found
  * @return {*} First item which passes predicate or Partial isFunction (which accepts list)
  */
-module.exports = function (list, predicate) {
+module.exports = find;
+
+function find (list, predicate) {
   if (exists(list && list.length) && !isFunction(list)) {
     var index = findIndex(list, predicate);
     return ~index ? list[index] : null;
@@ -33,4 +34,4 @@ module.exports = function (list, predicate) {
   else {
     throw new TypeError('first argument must be a list (have length) or function');
   }
-};
+}

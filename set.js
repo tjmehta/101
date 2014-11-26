@@ -2,8 +2,6 @@
  * @module 101/set
  */
 
-var exists = require('./exists');
-var keypather = require('keypather')();
 var extend = require('extend');
 var isString = require('./is-string');
 var isObject = require('./is-object');
@@ -17,7 +15,9 @@ var isObject = require('./is-object');
  * @param {*} val - value of the key being set on obj
  * @return {*|function} New obj with new value set or Partial-function set (which accepts obj) and returns a new obj with val set
  */
-module.exports = function (obj, key, val) {
+module.exports = set;
+
+function set (obj, key, val) {
   var setObj;
   if (arguments.length === 1) {
     // (setObj)
@@ -51,4 +51,4 @@ module.exports = function (obj, key, val) {
     setObj[key] = val;
     return extend(obj, setObj); // extends original
   }
-};
+}
