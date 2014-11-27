@@ -1,6 +1,5 @@
 /**
  * @module 101/is-empty
- *
  */
 
 var isString = require('./is-string');
