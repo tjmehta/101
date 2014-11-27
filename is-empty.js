@@ -13,14 +13,16 @@ var isArray = Array.isArray;
  * @param {*} val - value checked to be a empty
  * @return {boolean} Whether the value is an empty or not
  */
-module.exports = function (val) {
+module.exports = isEmpty;
+
+function isEmpty (val) {
   if(isString(val)) {
-      return (val.length === 0 || !val.trim());
+    return (val.length === 0 || !val.trim());
   } else if(isObject(val) || isArray(val)) {
-      for (var name in val) {
-          return false;
-      } return true;
+    for (var name in val) {
+      return false;
+    } return true;
   } else {
-      throw new TypeError('first argument must be a string, object or array');
+    throw new TypeError('first argument must be a string, object or array');
   }
-};
+}
