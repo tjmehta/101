@@ -9,32 +9,32 @@ var isEmpty = require('../is-empty');
 
 describe('isEmpty', function () {
   it('should return true for empty', function(done) {
-      expect(isEmpty([])).to.be.true;
-      expect(isEmpty("")).to.be.true;
-      expect(isEmpty(" ")).to.be.true;
-      expect(isEmpty({})).to.be.true;
-      done();
+    expect(isEmpty([])).to.be.true;
+    expect(isEmpty("")).to.be.true;
+    expect(isEmpty(" ")).to.be.true;
+    expect(isEmpty({})).to.be.true;
+    done();
   });
   it('should return false for non-empty', function(done) {
-      expect(isEmpty({x : "y"})).to.be.false;
-      expect(isEmpty("a")).to.be.false;
-      expect(isEmpty(" a")).to.be.false;
-      expect(isEmpty([1])).to.be.false;
-      done();
+    expect(isEmpty({x : "y"})).to.be.false;
+    expect(isEmpty("a")).to.be.false;
+    expect(isEmpty(" a")).to.be.false;
+    expect(isEmpty([1])).to.be.false;
+    done();
   });
   it('should error when given invalid arguments', function (done) {
-      try {
-          isEmpty(function() {});
-      }
-      catch (err) {
-          expect(err.message).to.equal('first argument must be a string, object or array');
-      }
-      try {
-          isEmpty();
-      }
-      catch (err) {
-          expect(err.message).to.equal('first argument must be a string, object or array');
-      }
-      done();
+    try {
+      isEmpty(function() {});
+    }
+    catch (err) {
+      expect(err.message).to.equal('first argument must be a string, object or array');
+    }
+    try {
+      isEmpty();
+    }
+    catch (err) {
+      expect(err.message).to.equal('first argument must be a string, object or array');
+    }
+    done();
   });
 });
