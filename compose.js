@@ -5,15 +5,14 @@
 /**
  * [compose description]
  * @function module:101/compose
- * @param {function} functions
- * @return {function} function
+ * @param {function} f
+ * @param {function} g
+ * @return {function} 
  */
 module.exports = compose;
  
-function compose(/* funcs */){
-  var funcs = Array.prototype.slice.call(arguments);
-
-  return function(seed) {
-    return funcs.reduceRight(function(x, f) { return f(x); }, seed);
-  };
+function compose(f,g) {
+  return function composed(x) { 
+    return f(g(x));
+  } 
 }
