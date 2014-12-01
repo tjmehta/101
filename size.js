@@ -1,4 +1,4 @@
-var pluck = require('101/pluck')
+var pluck = require('./pluck')
 
 module.exports = size;
 
