@@ -219,6 +219,19 @@ var isBoolean = require('101/is-boolean');
 [true, false, 1].map(isBoolean); // [true, true, false]
 ```
 
+## isEmpty
+
+Functional version of val empty object, array or object
+
+```js
+var isEmpty = require('101/is-empty');
+
+isEmpty([]); // true
+isEmpty({}); // true
+isEmpty(""); // true
+isEmpty(" "); // true
+```
+
 ## isFunction
 
 Functional version of `typeof val === 'function'`
