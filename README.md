@@ -5,9 +5,9 @@
 [![Coverage Status](https://coveralls.io/repos/tjmehta/101/badge.png)](https://coveralls.io/r/tjmehta/101)
 
 # Why another JS util library?
-### 1) 101 will be maintained to minimize overlap with vanilla JS. 
+### 1) 101 will be maintained to minimize overlap with vanilla JS.
 * 101 utils are made to work well with vanilla JS methods.
-* 101 will only duplicate vanilla JS to provide Functional Programming paradigms, or if  
+* 101 will only duplicate vanilla JS to provide Functional Programming paradigms, or if
 the method is not available in a widely supported JS version (currently ES5).
 * Other libraries often duplicate a lot of ES5: forEach, map, reduce, filter, sort, and more.
 
@@ -48,7 +48,7 @@ apply({ prop: 'val' })(function () { return this.prop; });  // 'val'
 
 ## clone
 
-It's [clone](https://www.npmjs.org/package/clone).
+It's [clone](https://www.npmjs.org/package/clone) (Only exporting this bc it is used internal to 101)
 
 ```js
 var clone = require('101/clone');
@@ -60,9 +60,19 @@ var obj = {
 clone(obj); // { foo: 1, bar: 2 }
 ```
 
+## compose
+
+Functional composition method. Works great with `array.reduce`.
+
+```js
+var compose = require('101/compose');
+
+compose(isNaN, parseInt)('nope'); // isNaN(parseInt('nope')) // true
+```
+
 ## envIs
 
-Functional version of `str === process.env.NODE_ENV`. 
+Functional version of `str === process.env.NODE_ENV`.
 Or's multiple environments.
 
 ```js
@@ -76,7 +86,7 @@ envIs('development', 'production'); // true
 
 ## equals
 
-Functional version of `===`.  
+Functional version of `===`.
 Supports partial functionality (great with array functions).
 
 ```js
@@ -103,7 +113,7 @@ exists(undefined); // false
 
 Just like ES6's `array.find`.
 
-Finds the first value in the list that passes the given function (predicate) and returns it.  
+Finds the first value in the list that passes the given function (predicate) and returns it.
 If list is not provided find will return a partial-function which accepts a list as the first argument.
 
 ```js
@@ -120,7 +130,7 @@ var item = find(arr, hasProps({ a:1 }));
 
 Just like ES6's `array.findIndex`.
 
-Finds the first value in the list that passes the given function (predicate) and returns it's index.  
+Finds the first value in the list that passes the given function (predicate) and returns it's index.
 If list is not provided findIndex will return a partial-function which accepts a list as the first argument.
 
 ```js
@@ -136,7 +146,7 @@ var index = findIndex(arr, function (val, i, arr) {
 
 ## hasKeypaths
 
-Determines whether the keypaths exist and have the specified values.  
+Determines whether the keypaths exist and have the specified values.
 Supports partial functionality (great with array functions, and 101/find).
 
 ```js
@@ -170,7 +180,7 @@ find(arr, hasProps(['foo.bar.qux']));     // { foo: { bar: { qux: 1 } } }
 
 ## hasProperties
 
-Determines whether the keys exist and, if specified, has the values.  
+Determines whether the keys exist and, if specified, has the values.
 Supports partial functionality (great with array functions, and 101/find).
 
 ```js
@@ -199,7 +209,7 @@ find(arr, hasProps(['a']));   // { a: 1, b: 1 }
 
 ## instanceOf
 
-Functional version of JavaScript's instanceof.  
+Functional version of JavaScript's instanceof.
 Supports partial functionality (great with array functions).
 
 ```js
@@ -210,7 +220,7 @@ var instanceOf = require('101/instance-of');
 
 ## isBoolean
 
-Functional version of `typeof val === 'boolean'`.  
+Functional version of `typeof val === 'boolean'`.
 Supports partial functionality (great with array functions).
 
 ```js
@@ -229,7 +239,7 @@ var isEmpty = require('101/is-empty');
 isEmpty([]); // true
 isEmpty({}); // true
 isEmpty(""); // true
-isEmpty(" "); // true
+isEmpty(" "); // false
 ```
 
 ## isFunction
@@ -298,7 +308,7 @@ not(isString)(100);   // true
 
 ## omit
 
-Returns a new object without the specified keys.  
+Returns a new object without the specified keys.
 Supports partial functionality (great with array functions, like map).
 
 ```js
@@ -331,7 +341,7 @@ or(false, false); // false
 
 ## passAll
 
-Muxes arguments across many functions and `&&`'s the results.  
+Muxes arguments across many functions and `&&`'s the results.
 Supports partial functionality (great with array functions, like map).
 
 ```js
@@ -342,7 +352,7 @@ var passAll = require('101/pass-all');
 
 ## passAny
 
-Muxes arguments across many functions and `||`'s the results.  
+Muxes arguments across many functions and `||`'s the results.
 Supports partial functionality (great with array functions, like map).
 
 ```js
@@ -353,7 +363,7 @@ var passAny = require('101/pass-any');
 
 ## pick
 
-Returns a new object with the specified keys (with key values from obj).  
+Returns a new object with the specified keys (with key values from obj).
 Supports partial functionality (great with array functions, like map).
 
 ```js
@@ -373,7 +383,7 @@ pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
 
 ## pluck
 
-Functional version of obj[key], returns the value of the key from obj.  
+Functional version of obj[key], returns the value of the key from obj.
 Supports partial functionality (great with array functions, like map).
 
 ```js
@@ -402,7 +412,7 @@ pluck(obj, 'foo.bar', false); // 2, pass false to not use keypaths
 
 ## set
 
-Functional version of obj[key] = val, returns a new obj with the key and value set.  
+Functional version of obj[key] = val, returns a new obj with the key and value set.
 Supports partial functionality (great with array functions, like map).
 
 ```js
