@@ -11,7 +11,7 @@ describe('isEmpty', function () {
   it('should return true for empty', function(done) {
     expect(isEmpty([])).to.be.true;
     expect(isEmpty("")).to.be.true;
-    expect(isEmpty(" ")).to.be.true;
+    expect(isEmpty(" ")).to.be.false;
     expect(isEmpty({})).to.be.true;
     done();
   });
@@ -27,13 +27,13 @@ describe('isEmpty', function () {
       isEmpty(function() {});
     }
     catch (err) {
-      expect(err.message).to.equal('first argument must be a string, object or array');
+      expect(err.message).to.match(/string, array or object/);
     }
     try {
       isEmpty();
     }
     catch (err) {
-      expect(err.message).to.equal('first argument must be a string, object or array');
+      expect(err.message).to.match(/string, array or object/);
     }
     done();
   });
