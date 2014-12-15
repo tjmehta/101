@@ -21,6 +21,8 @@ describe('isBoolean', function () {
     expect(isBoolean(/re/)).to.be.false;
     expect(isBoolean(null)).to.be.false;
     expect(isBoolean(undefined)).to.be.false;
+    expect(isBoolean(new String('hey'))).to.be.false;
+    expect(isBoolean(new Number(101))).to.be.false;
     done();
   });
 });
