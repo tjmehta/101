@@ -32,6 +32,20 @@ themselves constantly updating their package.json (repeatedly adding and removin
 
 # Usage
 
+## assign (aka extend)
+
+Just like ES6's `Object.assign`. Extend an object with any number of objects (returns original).
+
+```js
+var assign = require('101/assign');
+
+var target = { foo: 1 };
+var source1 = { bar: 1 };
+var source2 = { baz: 1 };
+assign(target, source1) // { foo: 1, bar: 1, baz: 1 } target extended with source objects
+assign(target, source1, source2) // { foo: 1, bar: 1, baz: 1 } target extended with source objects
+```
+
 ## and
 
 Functional version of `&&`. Works great with `array.reduce`.
@@ -214,20 +228,6 @@ hasProps(obj, ['foo.bar'], false);            // true, uses [hasOwnProperty vs i
 var arr = [{ a: 1, b: 1 }, { b: 1 }, { c: 1 }];
 find(arr, hasProps({ a:1 })); // { a: 1, b: 1 }
 find(arr, hasProps(['a']));   // { a: 1, b: 1 }
-```
-
-## assign (aka extend)
-
-Just like ES6's `Object.assign`. Extend an object with any number of objects (returns original).
-
-```js
-var assign = require('101/assign');
-
-var target = { foo: 1 };
-var source1 = { bar: 1 };
-var source2 = { baz: 1 };
-assign(target, source1) // { foo: 1, bar: 1, baz: 1 } target extended with source objects
-assign(target, source1, source2) // { foo: 1, bar: 1, baz: 1 } target extended with source objects
 ```
 
 ## instanceOf
