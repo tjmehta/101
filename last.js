@@ -19,9 +19,6 @@ function last (item) {
   if (exists(item && item.length) && !isFunction(item)) {
     val = item[item.length - 1];
   }
-  else if (isObject(item)) {
-    val = item[Object.keys(item).pop()];
-  }
   else {
     val = (item && item.toString) ? last(item.toString()) : undefined;
   }

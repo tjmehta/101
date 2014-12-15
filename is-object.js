@@ -13,5 +13,10 @@ var exists = require('./exists');
 module.exports = isObject;
 
 function isObject (val) {
-  return typeof val === 'object' && exists(val) && !Array.isArray(val) && !(val instanceof RegExp);
+  return typeof val === 'object' &&
+    exists(val) &&
+    !Array.isArray(val) &&
+    !(val instanceof RegExp) &&
+    !(val instanceof String) &&
+    !(val instanceof Number);
 }

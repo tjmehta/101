@@ -20,6 +20,8 @@ describe('isObject', function () {
     expect(isObject(/re/)).to.be.false;
     expect(isObject(null)).to.be.false;
     expect(isObject(undefined)).to.be.false;
+    expect(isObject(new String('hey'))).to.be.false;
+    expect(isObject(new Number(101))).to.be.false;
     done();
   });
 });

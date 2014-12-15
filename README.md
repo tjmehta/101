@@ -17,6 +17,15 @@ the method is not available in a widely supported JS version (currently ES5).
 * Currently node/browserify is supported, I will add other module system support on request.
 * Other libraries can be large, and require manually creating custom builds when optimizing for size.
 
+### Why not release each as individual modules?
+I ussually agree with this philosophy; however, while in practice, adherence to the module-pattern  
+can become quite annoying for micro-modules (like those in 101):
+* Micro-modules existance throughout a project can change very frequently, because of this one may find
+themselves constantly updating their package.json (repeatedly adding and removing the same micro-modules).
+* Unbundling micro-modules can lead to projects with 100's of dependencies which can be tedious to maintain.
+
+
+
 # Installation
 
 `npm install 101`
@@ -207,6 +216,20 @@ find(arr, hasProps({ a:1 })); // { a: 1, b: 1 }
 find(arr, hasProps(['a']));   // { a: 1, b: 1 }
 ```
 
+## assign (aka extend)
+
+Just like ES6's `Object.assign`. Extend an object with any number of objects (returns original).
+
+```js
+var assign = require('101/assign');
+
+var target = { foo: 1 };
+var source1 = { bar: 1 };
+var source2 = { baz: 1 };
+assign(target, source1) // { foo: 1, bar: 1, baz: 1 } target extended with source objects
+assign(target, source1, source2) // { foo: 1, bar: 1, baz: 1 } target extended with source objects
+```
+
 ## instanceOf
 
 Functional version of JavaScript's instanceof.
@@ -252,6 +275,16 @@ var isFunction = require('101/is-function');
 [parseInt, function () {}, 'foo'].map(isFunction); // [true, true, false]
 ```
 
+## isNumber
+
+Functional version of val typeof 'number'
+
+```js
+var isNumber = require('101/is-number');
+
+['foo', 'bar', 1].map(isString); // [false, false, true]
+```
+
 ## isObject
 
 Functional *strict* version of val typeof 'object' (and not array or regexp)
@@ -281,10 +314,6 @@ var last = require('101/last');
 
 last([1, 2, 3]); // 3
 last('hello');   // 'o'
-last({
-  foo: 1,
-  bar: 2
-});              // 2
 ```
 
 ## noop
