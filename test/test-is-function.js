@@ -21,6 +21,8 @@ describe('isFunction', function () {
     expect(isFunction(true)).to.be.false;
     expect(isFunction(null)).to.be.false;
     expect(isFunction(undefined)).to.be.false;
+    expect(isFunction(new String('hey'))).to.be.false;
+    expect(isFunction(new Number(101))).to.be.false;
     done();
   });
 });
