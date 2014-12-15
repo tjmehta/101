@@ -7,6 +7,7 @@ var expect = Lab.expect;
 
 var clone = require('../clone');
 
+// very simple test primarily checking exportation, see npm `clone` module...
 describe('clone', function () {
   it('should clone an object', function(done) {
     var obj = {
