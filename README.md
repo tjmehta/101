@@ -252,6 +252,16 @@ var isFunction = require('101/is-function');
 [parseInt, function () {}, 'foo'].map(isFunction); // [true, true, false]
 ```
 
+## isNumber
+
+Functional version of val typeof 'number'
+
+```js
+var isNumber = require('101/is-number');
+
+['foo', 'bar', 1].map(isString); // [false, false, true]
+```
+
 ## isObject
 
 Functional *strict* version of val typeof 'object' (and not array or regexp)
