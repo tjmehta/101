@@ -305,10 +305,6 @@ var last = require('101/last');
 
 last([1, 2, 3]); // 3
 last('hello');   // 'o'
-last({
-  foo: 1,
-  bar: 2
-});              // 2
 ```
 
 ## noop
