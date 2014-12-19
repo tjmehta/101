@@ -18,7 +18,7 @@ the method is not available in a widely supported JS version (currently ES5).
 * Other libraries can be large, and require manually creating custom builds when optimizing for size.
 
 ### Why not release each as individual modules?
-I ussually agree with this philosophy; however, while in practice, adherence to the module-pattern  
+I usually agree with this philosophy; however, while in practice, adherence to the module-pattern  
 can become quite annoying for micro-modules (like those in 101):
 * Micro-modules existance throughout a project can change very frequently, because of this one may find
 themselves constantly updating their package.json (repeatedly adding and removing the same micro-modules).
