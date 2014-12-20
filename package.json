@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "lab -c test",
-    "test-watch": "nodemon --exec lab -c test"
+    "test-watch": "nodemon --exec lab -c test",
+    "postinstall": "gulp"
   },
   "repository": {
     "type": "git",
