@@ -282,7 +282,7 @@ Functional version of val typeof 'number'
 ```js
 var isNumber = require('101/is-number');
 
-['foo', 'bar', 1].map(isString); // [false, false, true]
+['foo', 'bar', 1].map(isNumber); // [false, false, true]
 ```
 
 ## isObject
