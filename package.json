@@ -37,6 +37,6 @@
     "clone": "^0.1.18",
     "deep-eql": "^0.1.3",
     "extend": "^1.3.0",
-    "keypather": "^1.7.5"
+    "keypather": "^1.8.0"
   }
 }
