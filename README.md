@@ -205,15 +205,14 @@ find(arr, hasProps(['foo.bar.qux']));     // { foo: { bar: { qux: 1 } } }
 
 Determines whether the keys exist and, if specified, has the values.
 Supports partial functionality (great with array functions, and 101/find).
+NOTE: I am considering deprecating this method, bc it is so similar to has-keypaths.
 
 ```js
 var hasProps = require('101/has-properties');
 var obj = {
-  foo: {
-    bar: 1
-  },
   qux: 1
 };
+obj['foo.bar'] = 1
 
 hasProps(obj, ['foo', 'qux']); // true
 hasProps(obj, { qux: 1 }) // true
