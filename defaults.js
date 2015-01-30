@@ -5,16 +5,25 @@
 /**
  * Mixes in properties from source into target when
  * the property is not a property of `target`
- * @param  {Object} target Mix into
+ * @param  {Object} [target] Mix into
  * @param  {Object} source The defaults description
  * @return {Object}        THe resulting target
  */
-module.exports = function (target, source) {
-  target = target || {};
+module.exports = defaults;
 
-  for (var key in source) {
-    if (!(key in target)) target[ key ] = source[ key ];
+function defaults (target, source) {
+  if (arguments.length === 1) {
+    source = target;
+    return function (target) {
+      return defaults(target, source);
+    };
   }
-
-  return target;
-};
+  target = target || {};
+  if (!source) {
+    return target;
+  }
+  return Object.keys(source).reduce(function (target, key) {
+    target[key] = target[key] || source[key];
+    return target;
+  }, target);
+}

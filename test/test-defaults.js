@@ -38,10 +38,53 @@ describe('defaults', function () {
       qux: 3
     };
 
-    var c = defaults( b, a );
+    var c = defaults(a, b);
 
     expect(c).to.eql({
       foo: 1,
+      bar: 2,
+      qux: 3
+    });
+
+    done();
+  });
+
+  it('should return target if source does not exist', function(done) {
+    var a = null;
+
+    var b = {
+      foo: 1,
+      bar: 2,
+      qux: 3
+    };
+
+    var c = defaults(b, a);
+
+    expect(c).to.eql({
+      foo: 1,
+      bar: 2,
+      qux: 3
+    });
+
+    done();
+  });
+
+  it('should support partial functionality', function(done) {
+    var a = {
+      foo: 10
+    };
+
+    var b = {
+      foo: 1,
+      bar: 2,
+      qux: 3
+    };
+
+    var partial = defaults(b);
+    var c = partial(a);
+
+    expect(c).to.eql({
+      foo: 10,
       bar: 2,
       qux: 3
     });
