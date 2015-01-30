@@ -2,18 +2,24 @@
  * @module 101/assign
  */
 
-var isFunction = require('./is-function');
-var exists = require('./exists');
-
 /**
  * Copies enumerable and own properties from a source object(s) to a target object, aka extend.
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ * I added functionality to support assign as a partial function
  * @function module:101/assign
- * @param {object} target - object which source objects are extending (being assigned to)
+ * @param {object} [target] - object which source objects are extending (being assigned to)
  * @param {object} sources... - objects whose properties are being assigned to the source object
  * @return {object} source with extended properties
  */
-module.exports = function(target, firstSource) {
+module.exports = assign;
+
+function assign (target, firstSource) {
+  if (arguments.length === 1) {
+    firstSource = arguments[0];
+    return function (target) {
+      return assign(target, firstSource);
+    };
+  }
   if (target === undefined || target === null)
     throw new TypeError('Cannot convert first argument to object');
   var to = Object(target);
@@ -23,7 +29,7 @@ module.exports = function(target, firstSource) {
     var keysArray = Object.keys(Object(nextSource));
     for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
       var nextKey = keysArray[nextIndex];
-      var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+      Object.getOwnPropertyDescriptor(nextSource, nextKey);
       // I changed the following line to get 100% test coverage.
       // if (desc !== undefined && desc.enumerable) to[nextKey] = nextSource[nextKey];
       // I was unable to find a scenario where desc was undefined or that desc.enumerable was false:
@@ -34,4 +40,4 @@ module.exports = function(target, firstSource) {
     }
   }
   return to;
-};
+}

@@ -28,6 +28,26 @@ describe('assign', function () {
     });
     done();
   });
+  it('should support partial functionality', function (done) {
+    var obj = {
+      foo: 1,
+      bar: 1,
+      qux: 1
+    };
+    var obj2 = {
+      you: 1
+    };
+    var assignPartial = assign(obj2);
+    var assigned = assignPartial(obj); // works great with map
+    expect(assigned).to.equal(obj);
+    expect(assigned).to.eql({
+      foo: 1,
+      bar: 1,
+      qux: 1,
+      you: 1
+    });
+    done();
+  });
   it('should throw an error if source is undefined', function (done) {
     try {
       assign(undefined, {});
