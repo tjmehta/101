@@ -14,4 +14,9 @@ describe('not', function() {
       .to.eql([true, true, false]);
     done();
   });
+  it('should inverse a function (and work with array functions)', function (done) {
+    expect([true, 1, false].map(not))
+      .to.eql([false, false, true]);
+    done();
+  });
 });
