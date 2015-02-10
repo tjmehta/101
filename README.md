@@ -466,6 +466,20 @@ var obj = {
 set(obj, 'foo', 100); // { foo: 100, bar:2 }
 ```
 
+## xor
+
+Exclusive or
+Works great with `array.reduce`.
+
+```js
+var xor = require('101/xor');
+
+xor(true, true);   // false
+xor(true, false);  // true
+xor(false, true);  // true
+xor(false, false); // false
+```
+
 ## License
 
 MIT
