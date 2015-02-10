@@ -55,6 +55,7 @@ var and = require('101/and');
 
 and(true, false); // false
 and(true, true);  // true
+and(true, "foo");  // "foo"
 ```
 
 ## apply
@@ -365,6 +366,7 @@ var or = require('101/or');
 or(true, true);   // true
 or(true, false);  // true
 or(false, false); // false
+or("foo", false); // "foo"
 ```
 
 ## passAll
