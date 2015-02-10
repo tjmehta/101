@@ -27,49 +27,30 @@ module.exports = function () {
 
 function pick (obj, args) {
   var keys = [];
-  var regexps = [];
-  function concatElement(el) {
-    if (el instanceof RegExp) {
-      regexps = regexps.concat(el);
-    }
-    else {
-      keys = keys.concat(el);
-    }
-  }
-  args.forEach(function (element) {
-    if (Array.isArray(element)) {
-      element.forEach(function(subelement){
-        concatElement(subelement);
-      });
-    }
-    else {
-      concatElement(element);
-    }
+  args.forEach(function (key) {
+    keys = keys.concat(key);
   });
   var out = {};
-  if (keys.length > 0) {
-    keys.forEach(copyWithString(obj, out));
-  }
-  if (regexps.length > 0) {
-    regexps.forEach(function(regexp){
-      Object.keys(obj).forEach(copyWithRegExp(obj, out, regexp));
-    });
-  }
+  keys.forEach(copy(obj, out));
   return out;
 }
 
-function copyWithString (from, to) {
+function copy (from, to) {
   return function (key) {
-    if (key in from) {
-      to[key] = from[key];
+    if (isRegExp(key)) {
+      Object.keys(from).forEach(function(keyFrom) {
+        if (key.test(keyFrom)) {
+          to[keyFrom] = from[keyFrom];
+        }
+      });
+    } else {
+      if (key in from) {
+        to[key] = from[key];
+      }
     }
   };
 }
 
-function copyWithRegExp (from, to, regexp) {
-  return function (key) {
-    if (regexp.test(key)) {
-      to[key] = from[key];
-    }
-  };
+function isRegExp (obj) {
+  return Object.prototype.toString.call(obj) == '[object RegExp]';
 }
