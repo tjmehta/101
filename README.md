@@ -392,7 +392,7 @@ var passAny = require('101/pass-any');
 ## pick
 
 Returns a new object with the specified keys (with key values from obj).
-Supports partial functionality (great with array functions, like map).
+Supports regular expressions and partial functionality (great with array functions, like map).
 
 ```js
 var pick = require('101/pick');
@@ -402,6 +402,7 @@ var obj = {
 };
 
 pick(obj, 'foo');          // { foo: 1 }
+pick(obj, RegExp('oo$'));  // { foo: 1 }
 pick(obj, ['foo']);        // { foo: 1 }
 pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
 

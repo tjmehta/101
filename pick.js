@@ -9,7 +9,7 @@ var isObject = require('./is-object');
  * When only keys are specified pick returns a partial-function which accepts obj.
  * @function module:101/pick
  * @param {object} [obj] - object whose keys are picked
- * @param {string|array} keys... - keys which will be taken from obj (can be specifieds as args (strings and/or arrays)
+ * @param {string|regexp|array} keys... - keys which will be taken from obj, can be specifieds as args (strings, regular epxressions, and/or arrays)
  * @return {object|function} Object with only the keys specified from the original obj or Partial-function pick (which accepts obj) and returns an object
  */
 module.exports = function () {
@@ -28,12 +28,22 @@ module.exports = function () {
 function pick (obj, args) {
   var keys = [];
   var regexps = [];
-  args.forEach(function (matcher) {
-    if (matcher instanceof RegExp || matcher[0] instanceof RegExp) {
-      regexps = regexps.concat(matcher);
+  function concatElement(el) {
+    if (el instanceof RegExp) {
+      regexps = regexps.concat(el);
     }
     else {
-      keys = keys.concat(matcher);
+      keys = keys.concat(el);
+    }
+  }
+  args.forEach(function (element) {
+    if (Array.isArray(element)) {
+      element.forEach(function(subelement){
+        concatElement(subelement);
+      });
+    }
+    else {
+      concatElement(element);
     }
   });
   var out = {};

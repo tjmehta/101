@@ -56,6 +56,16 @@ describe('pick', function () {
       bar: 1,
       qux: 1
     });
+    expect(pick(obj, [RegExp('q'), 'foo'], 'bar')).to.eql({
+      foo: 1,
+      bar: 1,
+      qux: 1
+    });
+    expect(pick(obj, [RegExp('x$'), 'foo'], [RegExp('b')])).to.eql({
+      foo: 1,
+      bar: 1,
+      qux: 1
+    });
     done();
   });
   it('should pick keys from objects in an array when used with map', function(done) {
@@ -186,7 +196,7 @@ describe('pick', function () {
         bar: 3
       }
     ]);
-    expect(objs.map(pick([RegExp('b'), RegExp('q')], ['foo']))).to.eql([
+    expect(objs.map(pick([RegExp('b'), 'qux'], ['foo']))).to.eql([
       {
         bar: 1
       },
@@ -198,6 +208,21 @@ describe('pick', function () {
       {
         foo: 3,
         bar: 3
+      }
+    ]);
+    expect(objs.map(pick([RegExp('b'), RegExp('^f')], [RegExp('oo$')]))).to.eql([
+      {
+        bar: 1
+      },
+      {
+        bar: 2,
+        foo: 2
+      },
+      {
+        bar: 3,
+        foo: 3,
+        koo: 3,
+        goo: 3
       }
     ]);
     expect(objs.map(pick())).to.eql([
