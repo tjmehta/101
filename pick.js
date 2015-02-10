@@ -27,17 +27,38 @@ module.exports = function () {
 
 function pick (obj, args) {
   var keys = [];
-  args.forEach(function (key) {
-    keys = keys.concat(key);
+  var regexps = [];
+  args.forEach(function (matcher) {
+    if (matcher instanceof RegExp || matcher[0] instanceof RegExp) {
+      regexps = regexps.concat(matcher);
+    }
+    else {
+      keys = keys.concat(matcher);
+    }
   });
   var out = {};
-  keys.forEach(copy(obj, out));
+  if (keys.length > 0) {
+    keys.forEach(copyWithString(obj, out));
+  }
+  if (regexps.length > 0) {
+    regexps.forEach(function(regexp){
+      Object.keys(obj).forEach(copyWithRegExp(obj, out, regexp));
+    });
+  }
   return out;
 }
 
-function copy (from, to) {
+function copyWithString (from, to) {
   return function (key) {
     if (key in from) {
+      to[key] = from[key];
+    }
+  };
+}
+
+function copyWithRegExp (from, to, regexp) {
+  return function (key) {
+    if (regexp.test(key) && !(key in to)) {
       to[key] = from[key];
     }
   };
