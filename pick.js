@@ -68,7 +68,7 @@ function copyWithString (from, to) {
 
 function copyWithRegExp (from, to, regexp) {
   return function (key) {
-    if (regexp.test(key) && !(key in to)) {
+    if (regexp.test(key)) {
       to[key] = from[key];
     }
   };
