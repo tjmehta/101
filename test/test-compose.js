@@ -38,4 +38,31 @@ describe('compose', function() {
     expect(actual).to.eql(expected);
     done();
   });
+
+  it('compose should take any number of functions', function(done) {
+    var f = function(x) { return x + x; }
+    var g = function(x) { return x - 9; }
+    var x = Math.random();
+    var expected = f(g(f(g(g(x)))));
+    var composed = compose(f, g, f, g, g);
+    var actual = composed(x);
+    var reduced = [f, g, f, g, g].reduce(compose);
+    var actualReduced = reduced(x);
+    expect(actual).to.eql(expected);
+    expect(actualReduced).to.eql(expected);
+    done();
+  });
+
+  it('compose should passe all arguments to the first function', function(done) {
+    var f = function(x) { return x + x; }
+    var g = function(x) { return x - 9; }
+    var add = function(x, y) { return x + y; }
+    var x = Math.random();
+    var y = Math.random();
+    var expected = f(g(add(x, y)));
+    var composed = compose(f, g, add);
+    var actual = composed(x, y);
+    expect(actual).to.eql(expected);
+    done();
+  });
 });

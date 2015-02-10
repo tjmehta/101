@@ -92,6 +92,8 @@ Functional composition method. Works great with `array.reduce`.
 var compose = require('101/compose');
 
 compose(isNaN, parseInt)('nope'); // isNaN(parseInt('nope')) // true
+compose(isNaN, parseInt, pluck('id'))({ id: 'nope'}); // isNaN(parseInt(pluck({ id: 'nope' }, 'id')) // true
+[isNaN, parseInt, pluck('id')].reduce(compose)({ id: 'nope'}); // isNaN(parseInt(pluck({ id: 'nope' }, 'id')) // true
 ```
 
 ## envIs
