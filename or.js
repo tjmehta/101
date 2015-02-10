@@ -7,7 +7,7 @@
  * @function module:101/or
  * @param {*} a - any value
  * @param {*} b - any value
- * @return {boolean} a || b
+ * @return {*} a || b
  */
 
 module.exports = or;
