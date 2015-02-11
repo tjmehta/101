@@ -3,6 +3,7 @@
  */
 
 var isObject = require('./is-object');
+var isRegExp = require('./is-regexp');
 
 /**
  * Returns a new object with the specified keys (with key values from obj).
@@ -49,8 +50,4 @@ function copy (from, to) {
       }
     }
   };
-}
-
-function isRegExp (obj) {
-  return Object.prototype.toString.call(obj) == '[object RegExp]';
 }
