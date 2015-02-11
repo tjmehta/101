@@ -94,6 +94,23 @@ var compose = require('101/compose');
 compose(isNaN, parseInt)('nope'); // isNaN(parseInt('nope')) // true
 ```
 
+## converge
+
+Converges an array of functions into one. Works great with `compose`.
+
+```js
+var converge = require('101/converge');
+
+converge(mul, [add, sub])(6, 2); // mul(add(6, 2), sub(6, 2)) // (6+2) * (6-2) = 36
+
+[ {a: true, b: false}
+, {a: false, b: false}
+, {a: true, b: true}
+].filter(converge(and , [pluck("a") , pluck("b")])); // [{a: true, b: true}]
+
+[f, converge(g, [h, i]), j].reduce(compose); // f(g(h(j), i(j)))
+```
+
 ## envIs
 
 Functional version of `str === process.env.NODE_ENV`.
