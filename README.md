@@ -294,6 +294,16 @@ var isObject = require('101/is-object');
 [{}, { foo: 1 }, 100].map(isObject); // [true, true, false]
 ```
 
+## isRegExp
+
+Check if a value is an instance of RegExp
+
+```js
+var isRegExp = require('101/is-regexp');
+
+[new RegExp('.*'), /.*/, {}, 1].map(isRegExp); // [true, true, false, false]
+```
+
 ## isString
 
 Functional version of val typeof 'string'
