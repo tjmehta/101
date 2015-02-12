@@ -111,6 +111,26 @@ converge(mul, [add, sub])(6, 2); // mul(add(6, 2), sub(6, 2)) // (6+2) * (6-2) =
 [f, converge(g, [h, i]), j].reduce(compose); // f(g(h(j), i(j)))
 ```
 
+## curry
+
+Returns a curried function.
+
+```js
+var curry = require('101/curry');
+
+function add(a, b) { return a + b; }
+
+var curriedAdd = curry(add);
+var add2 = curriedAdd(2);
+
+add2(6); // 8
+add2(8); // 10
+
+function join() { return Array.prototype.slice.call(arguments).join(''); }
+
+curry(join, 3)(1)(0)(1); // "101"
+```
+
 ## envIs
 
 Functional version of `str === process.env.NODE_ENV`.
