@@ -2,7 +2,7 @@
  * @module 101/set
  */
 
-var extend = require('extend');
+var assign = require('./assign');
 var isString = require('./is-string');
 var isObject = require('./is-object');
 
@@ -23,7 +23,7 @@ function set (obj, key, val) {
     // (setObj)
     setObj = obj;
     return function (obj) {
-      return extend(obj, setObj); // extends original
+      return assign(obj, setObj); // extends original
     };
   }
   if (arguments.length === 2) {
@@ -34,13 +34,13 @@ function set (obj, key, val) {
       setObj = {};
       setObj[key] = val;
       return function (obj) {
-        return extend(obj, setObj); // extends original
+        return assign(obj, setObj); // extends original
       };
     }
     else if (isObject(key)) {
       // (obj, setObj)
       setObj = key;
-      return extend(obj, setObj); // extends original
+      return assign(obj, setObj); // extends original
     }
     else {
       throw new TypeError('Invalid arguments: expected str, val or val, obj');
@@ -49,6 +49,6 @@ function set (obj, key, val) {
   else {
     setObj = {};
     setObj[key] = val;
-    return extend(obj, setObj); // extends original
+    return assign(obj, setObj); // extends original
   }
 }
