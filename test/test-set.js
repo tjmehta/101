@@ -7,7 +7,6 @@ var expect = Lab.expect;
 var clone = require('clone');
 var set = require('../set');
 var pluck = require('../pluck');
-var extend = require('extend');
 
 describe('set', function () {
   it('should set a key with value on a object', function(done) {
