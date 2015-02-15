@@ -12,7 +12,9 @@
 module.exports = compose;
  
 function compose(f,g) {
-  return function composed(x) { 
-    return f(g(x));
+  return function composed(/* args */) { 
+    var args = Array.prototype.slice.call(arguments);
+
+    return f(g.apply(null, args));
   } 
 }

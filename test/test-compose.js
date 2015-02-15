@@ -17,6 +17,19 @@ describe('compose', function() {
     done();
   });
 
+  it('compose(f, sum)(x, y) should be identical to f(sum(x, y))', function(done) {
+    var f = function(x) { return x * x; }
+    var sum = function(x, y) { return x + y; }
+    var x = Math.random();
+    var y = Math.random();
+    var expected = f(sum(x, y));
+    var composed = compose(f, sum);
+    var actual = composed(x, y);
+    expect(actual).to.eql(expected);
+    done();
+  });
+
+
   it('compose(f, g)(x) should be identical to [x].map(g).map(f)[0]', function(done) {
     var f = function(x) { return -x; }
     var g = function(x) { return x * 5; }
