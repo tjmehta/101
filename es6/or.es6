@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * @module 101/or
  */
@@ -12,6 +10,4 @@
  * @return {*} a || b
  */
 
-module.exports = function (a, b) {
-  return a || b;
-};
+export default (a, b) => a || b;

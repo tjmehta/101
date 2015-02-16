@@ -4,8 +4,9 @@
   "description": "common javascript utils that can be required selectively that assume es5+",
   "main": "index.js",
   "scripts": {
-    "test": "lab -c -t 100 test",
-    "test-watch": "nodemon --exec lab -c test"
+    "test": "npm run-script to5; lab -c -t 100 test",
+    "test-watch": "npm run-script to5; nodemon --exec lab -c test",
+    "to5": "babel es6/*.es6 --out-dir ./; mv es6/*.js ./"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   },
   "homepage": "https://github.com/tjmehta/101",
   "devDependencies": {
+    "babel": "^4.0.1",
     "coveralls": "^2.11.2",
     "lab": "^4.6.2"
   },
