@@ -6,7 +6,6 @@ var it = lab.it;
 var expect = Lab.expect;
 var clone = require('clone');
 var set = require('../set');
-var pluck = require('../pluck');
 
 describe('set', function () {
   it('should set a key with value on a object', function(done) {
@@ -19,11 +18,13 @@ describe('set', function () {
     var key = 'bar';
     var val = 100;
 
+    var original = clone(obj);
+
     var expected = clone(obj);
     expected[key] = val;
 
     expect(set(obj, key, val)).to.eql(expected);
-    expect(obj[key]).to.equal(100); // original obj modified
+    expect(obj).to.deep.equal(original); // original not modified
     done();
   });
   it('should set a key with a val when used with array functions', function(done) {
@@ -43,15 +44,19 @@ describe('set', function () {
         goo: 3
       }
     ];
+
     var key = 'bar';
     var val = 100;
+
+    var originals = clone(objs);
+
     var expected = objs.map(function (obj) {
       var out = clone(obj);
       out[key] = val;
       return out;
     });
     expect(objs.map(set(key, val))).to.eql(expected);
-    expect(objs.map(pluck(key))).to.eql([100, 100, 100]); // original obj modified
+    expect(objs).to.eql(originals); // original not modified
     done();
   });
   it('should set a set of keys and vals when given an object', function (done) {
@@ -66,11 +71,13 @@ describe('set', function () {
     var setObj = {};
     setObj[key] = val;
 
+    var original = clone(obj);
+
     var expected = clone(obj);
     expected[key] = val;
 
     expect(set(obj, setObj)).to.eql(expected);
-    expect(obj[key]).to.equal(100); // original obj modified
+    expect(obj).to.deep.equal(original); // original not modified
     done();
   });
   it('should set a set of keys and vals when given an object when used with array functions', function (done) {
@@ -94,13 +101,14 @@ describe('set', function () {
     var val = 100;
     var setObj = {};
     setObj[key] = val;
+    var originals = clone(objs);
     var expected = objs.map(function (obj) {
       var copy = clone(obj);
       copy[key] = val;
       return copy;
     });
     expect(objs.map(set(setObj))).to.eql(expected);
-    expect(objs.map(pluck(key))).to.eql([100, 100, 100]); // original obj modified
+    expect(objs).to.eql(originals); // original not modified
     done();
   });
   describe('errors', function() {
