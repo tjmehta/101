@@ -5,6 +5,7 @@
 var assign = require('./assign');
 var isString = require('./is-string');
 var isObject = require('./is-object');
+var keypather = require('keypather')();
 
 /**
  * Functional version of obj[key] = val.
@@ -32,7 +33,7 @@ function set (obj, key, val) {
       val = key;
       key = obj;
       setObj = {};
-      setObj[key] = val;
+      keypather.set(setObj, key, val);
       return function (obj) {
         return assign(obj, setObj); // extends original
       };
@@ -48,7 +49,7 @@ function set (obj, key, val) {
   }
   else {
     setObj = {};
-    setObj[key] = val;
+    keypather.set(setObj, key, val);
     return assign(obj, setObj); // extends original
   }
 }

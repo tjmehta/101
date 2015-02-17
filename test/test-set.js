@@ -75,6 +75,24 @@ describe('set', function () {
     expect(obj[key]).to.equal(100); // original obj modified
     done();
   });
+  it('should set the right value when given an object and a keypath', function (done) {
+    var obj = {
+      foo: 1,
+      bar: 1,
+      qux: 1
+    };
+    var keypathParts = ['bar', 'baz'];
+    var val = 100;
+
+    var expected = clone(obj);
+    var nestedObj = {};
+    nestedObj[keypathParts[1]] = val;
+    expected[keypathParts[0]] = nestedObj;
+
+    expect(set(obj, keypathParts.join('.'), val)).to.deep.equal(expected);
+    expect(obj[keypathParts[0]][keypathParts[1]]).to.equal(val); // original obj modified
+    done();
+  });
   it('should set a set of keys and vals when given an object when used with array functions', function (done) {
     var objs = [
       {
