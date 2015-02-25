@@ -13,7 +13,7 @@ var isObject = require('./is-object');
  * @param {*} [obj] - object on which the values will be set
  * @param {string} key - key of the value being set on obj
  * @param {*} val - value of the key being set on obj
- * @return {*|function} New obj with new value set or Partial-function set (which accepts obj) and returns a new obj with val set
+ * @return {*|function} The same obj with new value set or Partial-function set (which accepts obj) and returns the same obj with val set
  */
 module.exports = set;
 

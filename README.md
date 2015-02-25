@@ -490,7 +490,7 @@ pluck(obj, 'foo.bar', false); // 2, pass false to not use keypaths
 
 ## set
 
-Functional version of obj[key] = val, returns a new obj with the key and value set.
+Functional version of obj[key] = val, returns the same obj with the key and value set.
 Supports partial functionality (great with array functions, like map).
 
 ```js
