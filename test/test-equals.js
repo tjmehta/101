@@ -19,7 +19,8 @@ describe('equals', function() {
       [obj, {}],
       [false, ''],
       [+1, -1],
-      [Number.NaN, NaN]
+      [Number.NaN, NaN],
+      [0, 0]
     ];
     compares.forEach(function (items) {
       expect(equals(items[0], items[1])).to.equal(Object.is(items[0], items[1]));
