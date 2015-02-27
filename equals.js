@@ -3,7 +3,7 @@
  */
 
 /**
- * Functional version of ===
+ * Functional implementation of Object.is with polyfill for browsers without implementations of Object.is
  * @function module:101/equals
  * @param {*} a - any value
  * @param {*} b - any value
