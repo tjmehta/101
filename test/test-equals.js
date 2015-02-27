@@ -8,7 +8,7 @@ var expect = Lab.expect;
 var equals = require('../equals');
 
 describe('equals', function() {
-  it('should work like ===', function (done) {
+  it('should work like Object.is', function (done) {
     var obj = {};
     var compares = [
       ['hey', 'hey'],
@@ -17,11 +17,20 @@ describe('equals', function() {
       ['hey', 'hey'],
       [2, '3'],
       [obj, {}],
-      [false, '']
+      [false, ''],
+      [+1, -1],
+      [Number.NaN, NaN]
     ];
     compares.forEach(function (items) {
-      expect(equals(items[0], items[1])).to.equal(items[0] === items[1]);
+      expect(equals(items[0], items[1])).to.equal(Object.is(items[0], items[1]));
     });
+    // Monkey patching Object.is, better way?
+    var temp = Object.is;
+    Object.is = false;
+    compares.forEach(function (items) {
+      expect(equals(items[0], items[1])).to.equal(temp(items[0], items[1]));
+    });
+    Object.is = temp;
     done();
   });
   it('should works with array functions', function (done) {
