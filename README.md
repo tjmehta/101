@@ -147,7 +147,7 @@ envIs('development', 'production'); // true
 
 ## equals
 
-Functional version of `===`.
+Functional implementation of Object.is with polyfill
 Supports partial functionality (great with array functions).
 
 ```js
