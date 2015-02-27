@@ -7,7 +7,7 @@
  * @function module:101/equals
  * @param {*} a - any value
  * @param {*} b - any value
- * @return {boolean} a === b
+ * @return {boolean} Object.is(a, b)
  */
 module.exports = function (a, b) {
   if (arguments.length === 1) {
