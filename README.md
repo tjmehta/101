@@ -147,7 +147,7 @@ envIs('development', 'production'); // true
 
 ## equals
 
-Functional implementation of Object.is with polyfill
+Functional implementation of Object.is with polyfill for browsers without implementations of Object.is
 Supports partial functionality (great with array functions).
 
 ```js
