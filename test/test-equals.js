@@ -18,7 +18,7 @@ describe('equals', function() {
       [2, '3'],
       [obj, {}],
       [false, ''],
-      [+1, -1],
+      [+0, -0],
       [Number.NaN, NaN],
       [0, 0]
     ];
