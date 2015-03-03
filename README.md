@@ -131,6 +131,36 @@ function join() { return Array.prototype.slice.call(arguments).join(''); }
 curry(join, 3)(1)(0)(1); // "101"
 ```
 
+## del
+
+Functional version of delete obj[key] which returns the same obj without the deleted key.
+Supports partial functionality (great with array functions, like map).
+
+```js
+var del = require('101/del');
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+del(obj, 'foo'); // { bar: 2 }
+
+// use it with array.map
+[obj, obj, obj].map(del('foo')); // [{ bar: 2 }, {same}, {same}]
+
+// supports keypaths by default
+var obj = {
+  foo: {
+    moo: 1,
+    boo: 2
+  },
+  bar: 3
+};
+
+del(obj, 'foo.moo'); // { foo: { boo: 2 }, bar:3 }
+```
+
+
 ## envIs
 
 Functional version of `str === process.env.NODE_ENV`.
