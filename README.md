@@ -518,6 +518,26 @@ pluck(obj, 'foo.bar'); // 1, supports keypaths by default
 pluck(obj, 'foo.bar', false); // 2, pass false to not use keypaths
 ```
 
+## put
+
+Immutable version of obj[key] = val, returns a clone of the obj with the value put at the key.
+Supports partial functionality (great with array functions, like map).
+
+```js
+var put = require('101/put');
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+put(obj, 'baz', 3); // { foo: 1, bar:2, baz: 3 }
+obj; // { foo: 1, bar: 2 } (not modified)
+
+// use it with array.map
+[obj, obj, obj].map(put('foo', 100)); // [{ foo: 100, bar: 2 }, {copy}, {copy}]
+obj; // { foo: 1, bar: 2 } (not modified)
+```
+
 ## set
 
 Functional version of obj[key] = val, returns the same obj with the key and value set.
