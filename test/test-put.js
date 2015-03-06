@@ -61,6 +61,21 @@ describe('put', function () {
     done();
   });
 
+  it("shouldn't change the type of the object", function(done) {
+    var obj = new Date();
+
+    var key = 'bar';
+    var val = 100;
+
+    var expected = clone(obj);
+    expected[key] = val;
+
+    var result = put(obj, key, val);
+    expect(result).to.eql(expected);
+    expect(result instanceof Date).to.be.ok;
+    done();
+  });
+
   describe('errors', function() {
     it('should error when given two args other than {string|number}, val', function (done) {
       try {put(/whatever/, /whatever/);}
