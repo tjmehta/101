@@ -413,6 +413,34 @@ last([1, 2, 3]); // 3
 last('hello');   // 'o'
 ```
 
+## lens
+
+Create a lens to access a datastructur.
+
+```js
+var fooLens = lens('foo');
+var toUpper = function(str) { return str.toUpperCase(); };
+var obj = {
+  foo: 'foo',
+  bar: 'bar'
+};
+var arr = ['foo', 'bar'];
+
+fooLens(obj); // => 'foo'
+fooLens.set('moo', obj); // => { foo: 'moo', bar: 'bar' }
+fooLens.mod(toUpper, obj); // => { foo: 'MOO', bar: 'bar' }
+
+
+var first = lens(
+    function(arr) { return arr[0]; },
+    function(val, arr) { var clone = arr.slice(); clone[0] = val; return clone; }
+);
+
+first(arr); // => 'foo'
+first.set('moo')(arr); // => ['moo', 'bar']
+first.mod(toUpper)(arr); // => ['FOO', 'bar']
+```
+
 ## noop
 
 No-op function
