@@ -5,6 +5,7 @@
 var clone = require("./clone");
 var assign = require('./assign');
 var isString = require('./is-string');
+var isObject = require('./is-object');
 
 /**
  * Immutable version of obj[key] = val.
@@ -19,6 +20,17 @@ module.exports = put;
 
 function put (obj, key, val) {
   var putObj;
+  if (!arguments.length) {
+    throw new TypeError('Invalid number of arguments: expected at least one');
+  }
+  if (arguments.length === 1) {
+    // (putObj)
+    putObj = obj;
+    if (!isObject(putObj)) throw new TypeError('Invalid arguments: expected putObj');
+    return function (obj) {
+      return assign(clone(obj), putObj); // returns new object
+    };
+  }
   if (arguments.length === 2) {
     if (isString(obj) || typeof obj === 'number') {
       // (key, val)
@@ -30,16 +42,18 @@ function put (obj, key, val) {
         return assign(clone(obj), putObj); // returns new object
       };
     }
+    else if (isObject(key)) {
+      // (obj, putObj)
+      putObj = key;
+      return assign(clone(obj), putObj);
+    }
     else {
-      throw new TypeError('Invalid arguments: expected key, val');
+      throw new TypeError('Invalid arguments: expected key, val or obj, putObj');
     }
   }
-  else if (arguments.length === 3) {
+  else {
     putObj = {};
     putObj[key] = val;
     return assign(clone(obj), putObj); // returns new object
-  }
-  else {
-    throw new TypeError('Invalid number of arguments: expected 2 or 3');
   }
 }
