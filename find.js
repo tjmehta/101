@@ -10,9 +10,13 @@ var findIndex = require('./find-index');
  * Finds the first value in the list that passes the given function (predicate) and returns it's index.
  * If list is not provided find will return a partial-function which accepts a list as the first argument.
  * @function module:101/find
- * @param {array|string} [list] - list to be searched
- * @param {array|string} predicate - executed on each item in the list and returns true when the item is found
- * @return {*} First item which passes predicate or Partial isFunction (which accepts list)
+ *
+ * @param {array|string} list - list to be searched
+ * @param {function} predicate - executed on each item in the list and returns true when the item is found
+ * @return {*} - first element which passes predicate
+ *
+ * @param {function} predicate - executed on each item in the list and returns true when the item is found
+ * @return {function} - partial function (accepts list and returns first element that passes predicate)
  */
 module.exports = find;
 
