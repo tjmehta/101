@@ -9,9 +9,13 @@ var exists = require('./exists');
  * Finds the first value in the list that passes the given function (predicate) and returns it's index.
  * If list is not provided findIndex will return a partial-function which accepts a list as the first argument.
  * @function module:101/find-index
- * @param {array|string} [list] - list to be searched
- * @param {array|string} predicate - executed on each item in the list and returns true when the item is found
- * @return {number|function} Index of item which passes predicate or Partial isFunction (which accepts list)
+ *
+ * @param {array|string} list - list to be searched
+ * @param {function} predicate - executed on each item in the list and returns true when the item is found
+ * @return {number} - index of first item which passes predicate
+ *
+ * @param {function} predicate - executed on each item in the list and returns true when the item is found
+ * @return {function} - partial function (accepts list and returns index of first item that passes predicate)
  */
 module.exports = function (list, predicate) {
   if (exists(list && list.length) && !isFunction(list)) {

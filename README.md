@@ -215,6 +215,12 @@ var arr = [{ a: 1, b: 1 }, { b: 1 }, { c: 1 }];
 var item = find(arr, hasProps({ a:1 }));
 // returns { a: 1, b: 1 }
 // returns null if not found
+
+// partial-function
+var partial = find(hasProps({ a: 1 }));
+var item = partial(arr);
+// returns { a: 1, b: 1 }
+// returns null if not found
 ```
 
 ## findIndex
