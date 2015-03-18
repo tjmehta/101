@@ -23,7 +23,7 @@ function set (obj, key, val) {
     // (setObj)
     setObj = obj;
     return function (obj) {
-      return assign(obj, setObj); // extends original
+      return assign({}, obj, setObj); // returns new object
     };
   }
   if (arguments.length === 2) {
@@ -34,13 +34,13 @@ function set (obj, key, val) {
       setObj = {};
       setObj[key] = val;
       return function (obj) {
-        return assign(obj, setObj); // extends original
+        return assign({}, obj, setObj); // returns new object
       };
     }
     else if (isObject(key)) {
       // (obj, setObj)
       setObj = key;
-      return assign(obj, setObj); // extends original
+      return assign({}, obj, setObj); // returns new object
     }
     else {
       throw new TypeError('Invalid arguments: expected str, val or val, obj');
@@ -49,6 +49,6 @@ function set (obj, key, val) {
   else {
     setObj = {};
     setObj[key] = val;
-    return assign(obj, setObj); // extends original
+    return assign({}, obj, setObj); // returns new object
   }
 }
