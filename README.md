@@ -420,7 +420,7 @@ not(isString)(100);   // true
 
 ## omit
 
-Returns a new object without the specified keys.
+Immutable version of `delete obj.key`. Returns a new object without the specified keys.
 Supports partial functionality (great with array functions, like map).
 
 ```js
@@ -522,6 +522,26 @@ var obj = {
 
 pluck(obj, 'foo.bar'); // 1, supports keypaths by default
 pluck(obj, 'foo.bar', false); // 2, pass false to not use keypaths
+```
+
+## put
+
+Immutable version of `obj[key] = val`. Returns a clone of the obj with the value put at the key.
+Supports partial functionality (great with array functions, like map).
+
+```js
+var put = require('101/put');
+var obj = {
+  foo: 1,
+  bar: 2
+};
+
+put(obj, 'baz', 3); // { foo: 1, bar:2, baz: 3 }
+obj; // { foo: 1, bar: 2 } (not modified)
+
+// use it with array.map
+[obj, obj, obj].map(put('foo', 100)); // [{ foo: 100, bar: 2 }, {copy}, {copy}]
+obj; // { foo: 1, bar: 2 } (not modified)
 ```
 
 ## set
