@@ -6,6 +6,7 @@ var clone = require("./clone");
 var assign = require('./assign');
 var isString = require('./is-string');
 var isObject = require('./is-object');
+var isNumber = require('./is-number');
 
 /**
  * Immutable version of obj[key] = val.
@@ -32,7 +33,7 @@ function put (obj, key, val) {
     };
   }
   if (arguments.length === 2) {
-    if (isString(obj) || typeof obj === 'number') {
+    if (isString(obj) || isNumber(obj)) {
       // (key, val)
       val = arguments[1];
       key = arguments[0];
