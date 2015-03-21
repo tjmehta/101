@@ -499,8 +499,8 @@ pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
 [obj, obj, obj].map(pick('foo')); // [{ foo: 1 }, { foo: 1 }, { foo: 1 }];
 
 // supports keypaths
-pluck(obj, 'qwk.wrk');     // { qwk: { wrk: 1 } }
-pluck(obj, '["qwk.wrk"]'); // { 'qwk.wrk': 2 } }
+pick(obj, 'qwk.wrk');      // { qwk: { wrk: 1 } }
+pick(obj, '["qwk.wrk"]');  // { 'qwk.wrk': 2 } }
 ```
 
 ## pluck
