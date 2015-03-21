@@ -4,6 +4,8 @@
 
 var isObject = require('./is-object');
 var isRegExp = require('./is-regexp');
+var keypather = require('keypather')();
+var exists = require('./exists');
 
 /**
  * Returns a new object with the specified keys (with key values from obj).
@@ -45,8 +47,9 @@ function copy (from, to) {
         }
       });
     } else {
-      if (key in from) {
-        to[key] = from[key];
+      var val = keypather.get(from, key);
+      if (exists(val)) {
+        keypather.set(to, key, val);
       }
     }
   };

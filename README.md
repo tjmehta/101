@@ -483,7 +483,11 @@ Supports regular expressions and partial functionality (great with array functio
 var pick = require('101/pick');
 var obj = {
   foo: 1,
-  bar: 2
+  bar: 2,
+  qwk: {
+    wrk: 1
+  },
+  'qwk.wrk': 2
 };
 
 pick(obj, 'foo');          // { foo: 1 }
@@ -493,6 +497,10 @@ pick(obj, ['foo', 'bar']); // { foo: 1, bar: 2 }
 
 // use it with array.map
 [obj, obj, obj].map(pick('foo')); // [{ foo: 1 }, { foo: 1 }, { foo: 1 }];
+
+// supports keypaths
+pluck(obj, 'qwk.wrk');     // { qwk: { wrk: 1 } }
+pluck(obj, '["qwk.wrk"]'); // { 'qwk.wrk': 2 } }
 ```
 
 ## pluck
