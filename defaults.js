@@ -2,6 +2,8 @@
  * @module 101/defaults
  */
 
+var exists = require('./exists');
+
 /**
  * Mixes in properties from source into target when
  * the property is not a property of `target`
@@ -23,7 +25,7 @@ function defaults (target, source) {
     return target;
   }
   return Object.keys(source).reduce(function (target, key) {
-    target[key] = target[key] || source[key];
+    target[key] = exists(target[key]) ? target[key] : source[key];
     return target;
   }, target);
 }

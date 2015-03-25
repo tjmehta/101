@@ -11,17 +11,19 @@ describe('defaults', function () {
   it('should provide default values for an object', function(done) {
     var a = {
       foo: 1,
+      bar: 4,
       qux: 3
     };
 
     var b = {
+      foo: 0,
       bar: 2
     };
 
     var c = defaults(b, a);
 
     expect(c).to.eql({
-      foo: 1,
+      foo: 0,
       bar: 2,
       qux: 3
     });
