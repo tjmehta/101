@@ -18,7 +18,7 @@ the method is not available in a widely supported JS version (currently ES5).
 * Other libraries can be large, and require manually creating custom builds when optimizing for size.
 
 ### Why not release each as individual modules?
-I usually agree with this philosophy; however, while in practice, adherence to the module-pattern  
+I usually agree with this philosophy; however, while in practice, adherence to the module-pattern
 can become quite annoying for micro-modules (like those in 101):
 * Micro-modules existance throughout a project can change very frequently, because of this one may find
 themselves constantly updating their package.json (repeatedly adding and removing the same micro-modules).
@@ -131,6 +131,21 @@ function join() { return Array.prototype.slice.call(arguments).join(''); }
 curry(join, 3)(1)(0)(1); // "101"
 ```
 
+## defaults
+
+Fill non-existing object values with defaults. Use it to set defaults on options.
+Supports partial functionality (great with array functions).
+
+
+```js
+var defaults = require('101/defaults');
+var opts = { foo: 0, bar: 1 };
+var defs = { foo: 1, bar: 2, qux: 2 };
+
+defaults(opts, defs); // { foo: 0, bar: 1, qux: 2 }
+[opts].map(defaults(defs)); // [ { foo: 0, bar: 1, qux: 2 } ]
+```
+
 ## del
 
 Functional version of delete obj[key] which returns the same obj without the deleted key.
@@ -159,7 +174,6 @@ var obj = {
 
 del(obj, 'foo.moo'); // { foo: { boo: 2 }, bar:3 }
 ```
-
 
 ## envIs
 
