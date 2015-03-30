@@ -1,6 +1,5 @@
 /**
  * @module 101/is-string
- *
  */
 
 /**
