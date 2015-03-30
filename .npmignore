@@ -1,0 +1,6 @@
+test/
+.travis.yml
+.jshintrc
+.jshintignore
+.coveralls.yaml
+.editorconfig
