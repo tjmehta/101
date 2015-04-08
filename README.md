@@ -584,6 +584,21 @@ var obj = {
 set(obj, 'foo', 100); // { foo: 100, bar:2 }
 ```
 
+## values
+
+Returns Array containing the values of the properties of an object
+
+```js
+var values = require('101/values');
+var obj {
+  foo: 'apple',
+  bar: 'orange'
+};
+
+var objValues = values(obj);
+objValues // ['apple', 'orange']
+```
+
 ## xor
 
 Exclusive or
