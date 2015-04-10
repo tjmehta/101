@@ -5,7 +5,9 @@ var describe = lab.describe;
 var before = lab.before;
 var after = lab.after;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
+
 var isString = require('../is-string');
 
 var passAll = require('../pass-all');
@@ -23,7 +25,7 @@ describe('passAll', function () {
   });
   it('should work with array functions', function(done) {
     expect(this.arr.filter(passAll(isString, Boolean)))
-      .eql(this.arr.filter(isStringAndTruthy));
+      .to.deep.equal(this.arr.filter(isStringAndTruthy));
     done();
   });
   it('should apply its context to the functions', function(done) {
@@ -31,7 +33,7 @@ describe('passAll', function () {
     this.arr.forEach(passAll(checkContext).bind(this.ctx));
     done();
     function checkContext () {
-      return expect(this).to.equal(self.ctx);
+      return expect(this).to.deep.equal(self.ctx);
     }
   });
   it('should throw an error if it receives non-function args', function(done) {

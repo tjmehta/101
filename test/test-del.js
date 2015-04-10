@@ -3,7 +3,9 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
+
 var clone = require('clone');
 var del = require('../del');
 var pluck = require('../pluck');
@@ -21,8 +23,8 @@ describe('del', function () {
     var expected = clone(obj);
     delete expected[key];
 
-    expect(del(obj, key)).to.eql(expected);
-    expect(obj[key]).to.eql(undefined); // original obj modified
+    expect(del(obj, key)).to.deep.equal(expected);
+    expect(obj[key]).to.equal(undefined); // original obj modified
     done();
   });
   it('should support keypaths', function(done) {
@@ -40,8 +42,8 @@ describe('del', function () {
     var expected = clone(obj);
     delete expected.foo.moo;
 
-    expect(del(obj, key)).to.eql(expected);
-    expect(obj.foo.moo).to.eql(undefined); // original obj modified
+    expect(del(obj, key)).to.deep.equal(expected);
+    expect(obj.foo.moo).to.equal(undefined); // original obj modified
     done();
   });
   it('should del a set of keys when given an array', function (done) {
@@ -57,7 +59,7 @@ describe('del', function () {
     delete expected.foo;
     delete expected.bar;
 
-    expect(del(obj, delKeys)).to.eql(expected);
+    expect(del(obj, delKeys)).to.deep.equal(expected);
     expect(obj.foo).to.equal(undefined); // original obj modified
     expect(obj.bar).to.equal(undefined); // original obj modified
     done();
@@ -88,8 +90,8 @@ describe('del', function () {
       delete copy.bar;
       return copy;
     });
-    expect(objs.map(del(delKeys))).to.eql(expected);
-    expect(objs.map(pluck('foo'))).to.eql([undefined, undefined, undefined]); // original obj modified
+    expect(objs.map(del(delKeys))).to.deep.equal(expected);
+    expect(objs.map(pluck('foo'))).to.deep.equal([undefined, undefined, undefined]); // original obj modified
     done();
   });
   describe('errors', function() {

@@ -3,7 +3,9 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
+
 var clone = require('clone');
 var set = require('../set');
 var pluck = require('../pluck');
@@ -22,7 +24,7 @@ describe('set', function () {
     var expected = clone(obj);
     expected[key] = val;
 
-    expect(set(obj, key, val)).to.eql(expected);
+    expect(set(obj, key, val)).to.deep.equal(expected);
     expect(obj[key]).to.equal(100); // original obj modified
     done();
   });
@@ -50,8 +52,8 @@ describe('set', function () {
       out[key] = val;
       return out;
     });
-    expect(objs.map(set(key, val))).to.eql(expected);
-    expect(objs.map(pluck(key))).to.eql([100, 100, 100]); // original obj modified
+    expect(objs.map(set(key, val))).to.deep.equal(expected);
+    expect(objs.map(pluck(key))).to.deep.equal([100, 100, 100]); // original obj modified
     done();
   });
   it('should set a set of keys and vals when given an object', function (done) {
@@ -69,7 +71,7 @@ describe('set', function () {
     var expected = clone(obj);
     expected[key] = val;
 
-    expect(set(obj, setObj)).to.eql(expected);
+    expect(set(obj, setObj)).to.deep.equal(expected);
     expect(obj[key]).to.equal(100); // original obj modified
     done();
   });
@@ -99,8 +101,8 @@ describe('set', function () {
       copy[key] = val;
       return copy;
     });
-    expect(objs.map(set(setObj))).to.eql(expected);
-    expect(objs.map(pluck(key))).to.eql([100, 100, 100]); // original obj modified
+    expect(objs.map(set(setObj))).to.deep.equal(expected);
+    expect(objs.map(pluck(key))).to.deep.equal([100, 100, 100]); // original obj modified
     done();
   });
   describe('errors', function() {

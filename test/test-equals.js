@@ -3,7 +3,8 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var equals = require('../equals');
 
@@ -35,7 +36,7 @@ describe('equals', function() {
     done();
   });
   it('should works with array functions', function (done) {
-    expect([1,2,3].map(equals(1))).to.be.eql([true, false, false]);
+    expect([1,2,3].map(equals(1))).to.deep.equal([true, false, false]);
     done();
   });
 });

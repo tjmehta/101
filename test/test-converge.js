@@ -5,7 +5,8 @@ var lab = exports.lab = Lab.script();
 var describe = lab.describe;
 var it = lab.it;
 var beforeEach = lab.beforeEach;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 describe('converge', function() {
   var add, f, g, h, x;
@@ -23,7 +24,7 @@ describe('converge', function() {
     var expected = f(g(x));
     var converged = converge(f, [g]);
     var actual = converged(x);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 
@@ -31,7 +32,7 @@ describe('converge', function() {
     var expected = add(g(x), h(x));
     var converged = converge(add, [g, h]);
     var actual = converged(x);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 
@@ -39,7 +40,7 @@ describe('converge', function() {
     var expected = f(add(f(h(x)), g(h(x))));
     var converged = [f, converge(add, [f, g]), h].reduce(compose);
     var actual = converged(x);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 });

@@ -5,7 +5,8 @@ var describe = lab.describe;
 var it = lab.it;
 var beforeEach = lab.beforeEach;
 var afterEach = lab.afterEach;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var isArray = Array.isArray;
 var isObject = require('../is-object');
@@ -43,21 +44,21 @@ describe('find', function () {
   });
   it('should return -1 in an empty list', function (done) {
     var arr = [];
-    expect(find(arr, function (v) { return v === 1; })).to.eql(null);
+    expect(find(arr, function (v) { return v === 1; })).to.equal(null);
     done();
   });
   it('should get the index of an item in an array/string that passes a given function', function (done) {
     var arr = ctx.arr;
     expect(find(arr, isObject)).to.equal(arr[0]);
     expect(find(arr, isArray)).to.equal(arr[2]);
-    expect(find(arr, isFunction)).to.eql(null);
+    expect(find(arr, isFunction)).to.equal(null);
     done();
   });
   it('should get the index of an item in an array/string that passes a given function when used with map', function (done) {
     var arr = ctx.arr;
-    expect([arr].map(find(isObject))).to.eql([arr[0]]);
-    expect([arr].map(find(isArray))).to.eql([arr[2]]);
-    expect([arr].map(find(isFunction))).to.eql([null]);
+    expect([arr].map(find(isObject))).to.deep.equal([arr[0]]);
+    expect([arr].map(find(isArray))).to.deep.equal([arr[2]]);
+    expect([arr].map(find(isFunction))).to.deep.equal([null]);
     done();
   });
   it('should error when given invalid arguments', function (done) {

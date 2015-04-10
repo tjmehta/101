@@ -4,7 +4,8 @@ var lab = exports.lab = Lab.script();
 var describe = lab.describe;
 var it = lab.it;
 var beforeEach = lab.beforeEach;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 describe('curry', function() {
   var x, y, f, g, h;
@@ -34,7 +35,7 @@ describe('curry', function() {
     var expected = f(x);
     var curryF = curry(f);
     var actual = curryF(x);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 
@@ -42,7 +43,7 @@ describe('curry', function() {
     var expected = g(x, y);
     var curryG = curry(g);
     var actual = curryG(x)(y);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 
@@ -50,7 +51,7 @@ describe('curry', function() {
     var expected = g(x, y);
     var curryG = curry(g);
     var actual = curryG(x, y);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 
@@ -58,7 +59,7 @@ describe('curry', function() {
     var expected = h(x, y, y);
     var curryH = curry(h, 3);
     var actual = curryH(x, y, y);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 });
