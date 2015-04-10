@@ -3,7 +3,8 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var clone = require('../clone');
 
@@ -15,7 +16,7 @@ describe('clone', function () {
       bar: 1,
       qux: 1
     };
-    expect(clone(obj)).to.eql({
+    expect(clone(obj)).to.deep.equal({
       foo: 1,
       bar: 1,
       qux: 1

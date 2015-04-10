@@ -3,7 +3,8 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var envIs = require('../env-is');
 

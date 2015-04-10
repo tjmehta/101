@@ -3,7 +3,9 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
+
 var clone = require('../clone');
 var put = require('../put');
 var set = require('../set');
@@ -24,7 +26,7 @@ describe('put', function () {
     var expected = clone(obj);
     expected[key] = val;
 
-    expect(put(obj, key, val)).to.eql(expected);
+    expect(put(obj, key, val)).to.deep.equal(expected);
     expect(obj).to.deep.equal(original); // original not modified
     done();
   });
@@ -57,8 +59,8 @@ describe('put', function () {
       out[key] = val;
       return out;
     });
-    expect(objs.map(put(key, val))).to.eql(expected);
-    expect(objs).to.eql(originals); // original not modified
+    expect(objs.map(put(key, val))).to.deep.equal(expected);
+    expect(objs).to.deep.equal(originals); // original not modified
     done();
   });
 
@@ -78,7 +80,7 @@ describe('put', function () {
     var expected = clone(obj);
     expected[key] = val;
 
-    expect(put(obj, putObj)).to.eql(expected);
+    expect(put(obj, putObj)).to.deep.equal(expected);
     expect(obj).to.deep.equal(original); // original not modified
     done();
   });
@@ -112,8 +114,8 @@ describe('put', function () {
       out[key] = val;
       return out;
     });
-    expect(objs.map(put(putObj))).to.eql(expected);
-    expect(objs).to.eql(originals); // original not modified
+    expect(objs.map(put(putObj))).to.deep.equal(expected);
+    expect(objs).to.deep.equal(originals); // original not modified
     done();
   });
 
@@ -127,7 +129,7 @@ describe('put', function () {
     expected[key] = val;
 
     var result = put(obj, key, val);
-    expect(result).to.eql(expected);
+    expect(result).to.deep.equal(expected);
     expect(result instanceof Date).to.be.ok;
     done();
   });

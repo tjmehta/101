@@ -5,7 +5,9 @@ var describe = lab.describe;
 var it = lab.it;
 var beforeEach = lab.beforeEach;
 var afterEach = lab.afterEach;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
+
 var isArray = Array.isArray;
 var isObject = require('../is-object');
 var isFunction = require('../is-function');
@@ -121,24 +123,24 @@ describe('hasProperties', function () {
     });
     it('should return true for objects that have the properties (object)', function (done) {
       var arr = ctx.arr;
-      expect(arr.map(hasProperties({ bar:1 }))).to.eql([true, true, true, true, true]);
-      expect(arr.map(hasProperties({ qux:2 }))).to.eql([false, true, false, true, false]);
-      expect(arr.map(hasProperties({ foo: { x: 1 } }))).to.eql([false, false, false, false, true]);
-      expect(arr.map(hasProperties({ foo: { x: 1 } }, true))).to.eql([false, false, false, false, true]);
-      expect(arr.map(hasProperties({ foo: { x: 1 } }, false))).to.eql([false, false, false, false, false]);
-      expect(arr.map(hasProperties({ foo: last(arr).foo }, false))).to.eql([false, false, false, false, true]);
+      expect(arr.map(hasProperties({ bar:1 }))).to.deep.equal([true, true, true, true, true]);
+      expect(arr.map(hasProperties({ qux:2 }))).to.deep.equal([false, true, false, true, false]);
+      expect(arr.map(hasProperties({ foo: { x: 1 } }))).to.deep.equal([false, false, false, false, true]);
+      expect(arr.map(hasProperties({ foo: { x: 1 } }, true))).to.deep.equal([false, false, false, false, true]);
+      expect(arr.map(hasProperties({ foo: { x: 1 } }, false))).to.deep.equal([false, false, false, false, false]);
+      expect(arr.map(hasProperties({ foo: last(arr).foo }, false))).to.deep.equal([false, false, false, false, true]);
       done();
     });
     it('should return true for objects that have the properties (array)', function (done) {
       var arr = ctx.arr;
-      expect(arr.map(hasProperties(['bar']))).to.eql([true, true, true, true, true]);
-      expect(arr.map(hasProperties(['bar', 'qux']))).to.eql([false, true, false, true, false]);
+      expect(arr.map(hasProperties(['bar']))).to.deep.equal([true, true, true, true, true]);
+      expect(arr.map(hasProperties(['bar', 'qux']))).to.deep.equal([false, true, false, true, false]);
       arr.forEach(function (obj) {
         Object.getPrototypeOf(obj).qux = 1;
       });
-      expect(arr.map(hasProperties(['bar', 'qux']))).to.eql([true, true, true, true, true]);
-      expect(arr.map(hasProperties(['bar', 'qux'], true))).to.eql([true, true, true, true, true]);
-      expect(arr.map(hasProperties(['bar', 'qux'], false))).to.eql([false, true, false, true, false]);
+      expect(arr.map(hasProperties(['bar', 'qux']))).to.deep.equal([true, true, true, true, true]);
+      expect(arr.map(hasProperties(['bar', 'qux'], true))).to.deep.equal([true, true, true, true, true]);
+      expect(arr.map(hasProperties(['bar', 'qux'], false))).to.deep.equal([false, true, false, true, false]);
       done();
     });
   });

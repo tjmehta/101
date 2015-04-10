@@ -5,7 +5,8 @@ var describe = lab.describe;
 var it = lab.it;
 var before = lab.before;
 var after = lab.after;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var apply = require('../apply');
 
@@ -20,7 +21,7 @@ describe('apply', function () {
     done();
   });
   it('should apply context and arguments to a function - working array functions', function (done) {
-    expect([sum].map(apply(null, ctx.args))).to.eql([sum.apply(null, ctx.args)]);
+    expect([sum].map(apply(null, ctx.args))).to.deep.equal([sum.apply(null, ctx.args)]);
     done();
   });
   describe('context', function() {
@@ -37,7 +38,7 @@ describe('apply', function () {
       apply(context)(checkContext);
       done();
       function checkContext () {
-        return expect(this).to.equal(context);
+        return expect(this).to.deep.equal(context);
       }
     });
   });

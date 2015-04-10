@@ -3,7 +3,8 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var omit = require('../omit');
 
@@ -14,24 +15,24 @@ describe('omit', function () {
       bar: 1,
       qux: 1
     };
-    expect(omit(obj, 'bar')).to.eql({
+    expect(omit(obj, 'bar')).to.deep.equal({
       foo: 1,
       qux: 1
     });
-    expect(omit(obj, ['bar'])).to.eql({
+    expect(omit(obj, ['bar'])).to.deep.equal({
       foo: 1,
       qux: 1
     });
-    expect(omit(obj, 'foo', 'bar')).to.eql({
+    expect(omit(obj, 'foo', 'bar')).to.deep.equal({
       qux: 1,
     });
-    expect(omit(obj, ['foo', 'bar'])).to.eql({
+    expect(omit(obj, ['foo', 'bar'])).to.deep.equal({
       qux: 1,
     });
-    expect(omit(obj, ['foo', 'bar'], 'qux')).to.eql({});
-    expect(omit(obj, ['foo', 'bar'], ['qux'])).to.eql({});
-    expect(omit(obj)).to.eql(obj);
-    expect(omit(obj, [])).to.eql(obj);
+    expect(omit(obj, ['foo', 'bar'], 'qux')).to.deep.equal({});
+    expect(omit(obj, ['foo', 'bar'], ['qux'])).to.deep.equal({});
+    expect(omit(obj)).to.deep.equal(obj);
+    expect(omit(obj, [])).to.deep.equal(obj);
     done();
   });
   it('should omit keys from objects in an array when used with map', function(done) {
@@ -51,7 +52,7 @@ describe('omit', function () {
         goo: 3
       }
     ];
-    expect(objs.map(omit('bar'))).to.eql([
+    expect(objs.map(omit('bar'))).to.deep.equal([
       {},
       {
         foo: 2,
@@ -63,7 +64,7 @@ describe('omit', function () {
         goo: 3
       }
     ]);
-    expect(objs.map(omit(['bar']))).to.eql([
+    expect(objs.map(omit(['bar']))).to.deep.equal([
       {},
       {
         foo: 2,
@@ -75,7 +76,7 @@ describe('omit', function () {
         goo: 3
       }
     ]);
-    expect(objs.map(omit('foo', 'bar'))).to.eql([
+    expect(objs.map(omit('foo', 'bar'))).to.deep.equal([
       {},
       {
         qux: 2
@@ -85,7 +86,7 @@ describe('omit', function () {
         goo: 3
       }
     ]);
-    expect(objs.map(omit(['foo', 'bar']))).to.eql([
+    expect(objs.map(omit(['foo', 'bar']))).to.deep.equal([
       {},
       {
         qux: 2
@@ -95,7 +96,7 @@ describe('omit', function () {
         goo: 3
       }
     ]);
-    expect(objs.map(omit(['foo', 'bar'], 'qux'))).to.eql([
+    expect(objs.map(omit(['foo', 'bar'], 'qux'))).to.deep.equal([
       {},
       {},
       {
@@ -103,7 +104,7 @@ describe('omit', function () {
         goo: 3
       }
     ]);
-    expect(objs.map(omit(['foo', 'bar'], ['qux']))).to.eql([
+    expect(objs.map(omit(['foo', 'bar'], ['qux']))).to.deep.equal([
       {},
       {},
       {
@@ -111,8 +112,8 @@ describe('omit', function () {
         goo: 3
       }
     ]);
-    expect(objs.map(omit())).to.eql(objs);
-    expect(objs.map(omit([]))).to.eql(objs);
+    expect(objs.map(omit())).to.deep.equal(objs);
+    expect(objs.map(omit([]))).to.deep.equal(objs);
     done();
   });
 });

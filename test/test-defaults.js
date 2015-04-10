@@ -3,7 +3,8 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var defaults = require('../defaults');
 
@@ -22,7 +23,7 @@ describe('defaults', function () {
 
     var c = defaults(b, a);
 
-    expect(c).to.eql({
+    expect(c).to.deep.equal({
       foo: 0,
       bar: 2,
       qux: 3
@@ -42,7 +43,7 @@ describe('defaults', function () {
 
     var c = defaults(a, b);
 
-    expect(c).to.eql({
+    expect(c).to.deep.equal({
       foo: 1,
       bar: 2,
       qux: 3
@@ -62,7 +63,7 @@ describe('defaults', function () {
 
     var c = defaults(b, a);
 
-    expect(c).to.eql({
+    expect(c).to.deep.equal({
       foo: 1,
       bar: 2,
       qux: 3
@@ -85,7 +86,7 @@ describe('defaults', function () {
     var partial = defaults(b);
     var c = partial(a);
 
-    expect(c).to.eql({
+    expect(c).to.deep.equal({
       foo: 10,
       bar: 2,
       qux: 3

@@ -5,7 +5,9 @@ var describe = lab.describe;
 var it = lab.it;
 var beforeEach = lab.beforeEach;
 var afterEach = lab.afterEach;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
+
 var isArray = Array.isArray;
 var isObject = require('../is-object');
 var isFunction = require('../is-function');
@@ -54,9 +56,9 @@ describe('findIndex', function () {
   });
   it('should get the index of an item in an array/string that passes a given function when used with map', function (done) {
     var arr = ctx.arr;
-    expect([arr].map(findIndex(isObject))).to.eql([0]);
-    expect([arr].map(findIndex(isArray))).to.eql([2]);
-    expect([arr].map(findIndex(isFunction))).to.eql([-1]);
+    expect([arr].map(findIndex(isObject))).to.deep.equal([0]);
+    expect([arr].map(findIndex(isArray))).to.deep.equal([2]);
+    expect([arr].map(findIndex(isFunction))).to.deep.equal([-1]);
     done();
   });
   it('should error when given invalid arguments', function (done) {

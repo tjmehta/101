@@ -5,7 +5,9 @@ var describe = lab.describe;
 var it = lab.it;
 var beforeEach = lab.beforeEach;
 var afterEach = lab.afterEach;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
+
 var isArray = Array.isArray;
 var isObject = require('../is-object');
 var isFunction = require('../is-function');
@@ -139,14 +141,14 @@ describe('hasKeypaths', function () {
     });
     it('should return true for objects that have the properties (object)', function (done) {
       var arr = ctx.arr;
-      expect(arr.map(hasKeypaths({ bar:1 }))).to.eql([true, true, true, true]);
-      expect(arr.map(hasKeypaths({ qux:2 }))).to.eql([false, true, false, true]);
+      expect(arr.map(hasKeypaths({ bar:1 }))).to.deep.equal([true, true, true, true]);
+      expect(arr.map(hasKeypaths({ qux:2 }))).to.deep.equal([false, true, false, true]);
       done();
     });
     it('should return true for objects that have the properties (array)', function (done) {
       var arr = ctx.arr;
-      expect(arr.map(hasKeypaths(['bar']))).to.eql([true, true, true, true]);
-      expect(arr.map(hasKeypaths(['bar', 'qux']))).to.eql([false, true, false, true]);
+      expect(arr.map(hasKeypaths(['bar']))).to.deep.equal([true, true, true, true]);
+      expect(arr.map(hasKeypaths(['bar', 'qux']))).to.deep.equal([false, true, false, true]);
       done();
     });
   });

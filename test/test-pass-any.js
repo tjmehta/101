@@ -5,7 +5,9 @@ var describe = lab.describe;
 var before = lab.before;
 var after = lab.after;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
+
 var isString = require('../is-string');
 var isFunction = require('../is-function');
 
@@ -25,14 +27,14 @@ describe('passAny', function () {
   });
   it('should work with array functions', function(done) {
     expect(ctx.arr.filter(passAny(isString, isFunction)))
-      .eql(ctx.arr.filter(isStringOrFunction));
+      .to.deep.equal(ctx.arr.filter(isStringOrFunction));
     done();
   });
   it('should apply its context to the functions', function(done) {
     ctx.arr.forEach(passAny(checkContext).bind(ctx.ctx));
     done();
     function checkContext () {
-      return expect(this).to.equal(ctx.ctx);
+      return expect(this).to.deep.equal(ctx.ctx);
     }
   });
   it('should throw an error if it receives non-function args', function(done) {

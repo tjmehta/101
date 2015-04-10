@@ -3,7 +3,8 @@ var compose = require('../compose');
 var lab = exports.lab = Lab.script();
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 describe('compose', function() {
   it('compose(f, g)(x) should be identical to f(g(x))', function(done) {
@@ -13,7 +14,7 @@ describe('compose', function() {
     var expected = f(g(x));
     var composed = compose(f, g);
     var actual = composed(x);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 
@@ -25,7 +26,7 @@ describe('compose', function() {
     var expected = f(sum(x, y));
     var composed = compose(f, sum);
     var actual = composed(x, y);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 
@@ -37,7 +38,7 @@ describe('compose', function() {
     var expected = [x].map(g).map(f)[0];
     var composed = compose(f, g);
     var actual = composed(x);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 
@@ -48,7 +49,7 @@ describe('compose', function() {
     var expected = f(g(x));
     var composed = [f,g].reduce(compose);
     var actual = composed(x);
-    expect(actual).to.eql(expected);
+    expect(actual).to.equal(expected);
     done();
   });
 });

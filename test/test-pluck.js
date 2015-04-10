@@ -3,7 +3,8 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var pluck = require('../pluck');
 
@@ -37,20 +38,20 @@ describe('pluck', function () {
         goo: 3
       }
     ];
-    expect(objs.map(pluck('bar'))).to.eql([
+    expect(objs.map(pluck('bar'))).to.deep.equal([
       1,
       2,
       3
     ]);
-    expect(objs.map(pluck(['bar']))).to.eql([
+    expect(objs.map(pluck(['bar']))).to.deep.equal([
       1,
       2,
       3
     ]);
-    expect(objs.map(pluck())).to.eql([
+    expect(objs.map(pluck())).to.deep.equal([
       undefined, undefined, undefined
     ]);
-    expect(objs.map(pluck([]))).to.eql([
+    expect(objs.map(pluck([]))).to.deep.equal([
       undefined, undefined, undefined
     ]);
     done();
@@ -70,8 +71,8 @@ describe('pluck', function () {
         done();
       });
       it('should pluck keypaths from objects in an array when used with map', function (done) {
-        expect(objs.map(pluck('foo.bar'))).to.eql([1]);
-        expect(objs.map(pluck('foo.bar', true))).to.eql([1]);
+        expect(objs.map(pluck('foo.bar'))).to.deep.equal([1]);
+        expect(objs.map(pluck('foo.bar', true))).to.deep.equal([1]);
         done();
       });
     });
@@ -81,7 +82,7 @@ describe('pluck', function () {
         done();
       });
       it('should pluck keys from objects in an array when used with map', function (done) {
-        expect(objs.map(pluck('foo.bar', false))).to.eql([2]);
+        expect(objs.map(pluck('foo.bar', false))).to.deep.equal([2]);
         done();
       });
     });

@@ -3,7 +3,8 @@ var lab = exports.lab = Lab.script();
 
 var describe = lab.describe;
 var it = lab.it;
-var expect = Lab.expect;
+var Code = require('code');
+var expect = Code.expect;
 
 var assign = require('../assign');
 
@@ -19,8 +20,8 @@ describe('assign', function () {
       you: 1
     };
     var assigned = assign(obj, obj2);
-    expect(assigned).to.equal(obj);
-    expect(assigned).to.eql({
+    expect(assigned).to.deep.equal(obj);
+    expect(assigned).to.deep.equal({
       foo: 1,
       bar: 1,
       qux: 1,
@@ -39,8 +40,8 @@ describe('assign', function () {
     };
     var assignPartial = assign(obj2);
     var assigned = assignPartial(obj); // works great with map
-    expect(assigned).to.equal(obj);
-    expect(assigned).to.eql({
+    expect(assigned).to.deep.equal(obj);
+    expect(assigned).to.deep.equal({
       foo: 1,
       bar: 1,
       qux: 1,
@@ -68,8 +69,8 @@ describe('assign', function () {
   });
   it('should just return the target if sources are undefined or null', function(done) {
     var obj = {};
-    expect(assign(obj, null)).to.equal(obj);
-    expect(assign(obj, undefined)).to.equal(obj);
+    expect(assign(obj, null)).to.deep.equal(obj);
+    expect(assign(obj, undefined)).to.deep.equal(obj);
     done();
   });
 });

@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/tjmehta/101",
   "devDependencies": {
-    "coveralls": "^2.11.2",
-    "lab": "^4.6.2"
+    "code": "^1.4.0",
+    "lab": "^5.5.1"
   },
   "dependencies": {
     "clone": "^0.1.18",
