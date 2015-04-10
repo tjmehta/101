@@ -24,7 +24,7 @@ function _curry(f, n, args) {
     var curryArgs = args.concat(slice.call(arguments));
 
     if (curryArgs.length >= n) {
-      return f.apply(null, curryArgs);
+      return f.apply(null, curryArgs.slice(0, n));
     } else {
       return _curry(f, n, curryArgs);
     }
