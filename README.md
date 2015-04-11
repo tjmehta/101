@@ -255,6 +255,17 @@ var index = findIndex(arr, function (val, i, arr) {
 // returns -1 if not found
 ```
 
+## first
+
+Returns the first value of a list
+
+```js
+var first = require('101/first');
+
+first([1, 2, 3]); // 1
+first('hello');   // 'h'
+```
+
 ## hasKeypaths
 
 Determines whether the keypaths exist and have the specified values.
