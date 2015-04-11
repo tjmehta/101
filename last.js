@@ -2,7 +2,6 @@
  * @module 101/last
  */
 
-var isObject = require('./is-object');
 var exists = require('./exists');
 var isFunction = require('./is-function');
 
