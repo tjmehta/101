@@ -255,6 +255,28 @@ var index = findIndex(arr, function (val, i, arr) {
 // returns -1 if not found
 ```
 
+## flip
+
+Returns a function with flipped arguments
+
+```js
+var flip = require('101/flip');
+var curry = require('101/curry');
+var hasKeypaths = require('101/has-keypaths');
+
+var hasFooBar = curry(flip(hasKeypaths))(['foo.bar']);
+
+hasFooBar({ foo: { bar : true } }); // true
+
+
+function prefix(pre, str) {
+  return pre + str;
+}
+
+flip(prefix)('hello', '_'); // "_hello"
+
+```
+
 ## hasKeypaths
 
 Determines whether the keypaths exist and have the specified values.
