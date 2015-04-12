@@ -62,4 +62,20 @@ describe('curry', function() {
     expect(actual).to.equal(expected);
     done();
   });
+
+  it('curry(g)(1, 2, 3) should be identical to g(1, 2)', function(done) {
+    var expected = g(x, y);
+    var curryG = curry(g);
+    var actual = curryG(x, y, y);
+    expect(actual).to.equal(expected);
+    done();
+  });
+
+  it('curry(h, 2)(1, 2, 3) should be identical to h(1, 2)', function(done) {
+    var expected = h(x, y);
+    var curryH = curry(h, 2);
+    var actual = curryH(x, y, y);
+    expect(actual).to.equal(expected);
+    done();
+  });
 });
