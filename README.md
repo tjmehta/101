@@ -612,6 +612,17 @@ var obj = {
 set(obj, 'foo', 100); // { foo: 100, bar:2 }
 ```
 
+## tail
+
+Returns the tail of a list
+
+```js
+var tail = require('101/tail');
+
+tail([1, 2, 3]); // [2, 3]
+tail('hello');   // 'ello'
+```
+
 ## values
 
 Returns Array containing the values of the properties of an object
