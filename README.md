@@ -608,6 +608,20 @@ obj; // { foo: 1, bar: 2 } (not modified)
 obj; // { foo: 1, bar: 2 } (not modified)
 ```
 
+## restParam
+
+Returns a function with an appended rest param
+
+```js
+var restParam = require('101/rest-param');
+
+restParam(function(a, b, rest) {
+  console.log(a); // 1
+  console.log(b); // 2
+  console.log(rest); // [3, 4]
+})(1, 2, 3, 4);
+```
+
 ## set
 
 Functional version of obj[key] = val, returns the same obj with the key and value set.
