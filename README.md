@@ -437,7 +437,7 @@ last('hello');   // 'o'
 
 ## lens
 
-Create a lens to access a datastructure.
+Create a lens to access a data structure.
 
 ```js
 var fooLens = lens('foo');
