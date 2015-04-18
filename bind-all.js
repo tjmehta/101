@@ -23,7 +23,7 @@ function bindAll (object, methods) {
       keys = methods;
     } else if (typeof methods === 'string') {
       // if a string was paased, split it by spaces
-      keys = methods.split(/\s/);
+      keys = methods.split(/,\s|[,\s]/);
     } else {
       throw new TypeError('The second argument must be an array or a string');
     }
