@@ -111,7 +111,7 @@ describe('set', function () {
         set(/what/, /what/);
       }
       catch (err) {
-        expect(err).to.be.ok;
+        expect(err).to.exist();
         done();
       }
     });
