@@ -100,7 +100,7 @@ describe('del', function () {
         del(/what/, /what/);
       }
       catch (err) {
-        expect(err).to.be.ok;
+        expect(err).to.exist();
         done();
       }
     });

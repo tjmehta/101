@@ -130,26 +130,26 @@ describe('put', function () {
 
     var result = put(obj, key, val);
     expect(result).to.deep.equal(expected);
-    expect(result instanceof Date).to.be.ok;
+    expect(result instanceof Date).to.equal(true);
     done();
   });
 
   describe('errors', function() {
     it('should error when given two args other than (key, value) or (obj, putObj)', function (done) {
-      try {put(/whatever/, /whatever/);}
-      catch (err) {expect(err).to.be.ok;}
+      try { put(/whatever/, /whatever/); }
+      catch (err) { expect(err).to.exist(); }
       done();
     });
 
     it('should error when given no args', function (done) {
-      try {put();}
-      catch (err) {expect(err).to.be.ok;}
+      try { put(); }
+      catch (err) { expect(err).to.exist(); }
       done();
     });
 
     it('should error when one arg other than putObj', function (done) {
-      try {put("anything");}
-      catch (err) {expect(err).to.be.ok;}
+      try { put("anything"); }
+      catch (err) { expect(err).to.exist(); }
       done();
     });
   });
