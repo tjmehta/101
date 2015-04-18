@@ -3,6 +3,7 @@
  */
 
 var isFunction = require('./is-function');
+var keysIn = require('./keys-in');
 /**
  * Bind a passed object methods.
  * If methods name to bing are not specified, all the object methods are binded
@@ -27,11 +28,10 @@ function bindAll (object, methods) {
       throw new TypeError('The second argument must be an array or a string');
     }
   } else {
-    keys = Object.keys(object);
-    keys.concat(Object.keys(object.prototype));
+    keys = keysIn(object);
   }
 
-  if (!keys || keys.length) { return object; }
+  if (!keys.length) { return object; }
 
   // Bind all the specified methods
   keys.forEach(function(key) {
@@ -39,7 +39,7 @@ function bindAll (object, methods) {
     // skip for non-functions and when the target does not exist
     if (!target || !isFunction(target)) { return; }
 
-    target = target.bind.apply(object);
+    object[key] = target.bind(object);
   });
 
   return object;
