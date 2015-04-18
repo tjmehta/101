@@ -37,8 +37,8 @@ describe('keys-in', function() {
   it('should return an empty array', function(done) {
     var keys = keysIn();
 
-    expect(Array.isArray(keys)).to.be.true;
-    expect(keys.length).not.to.be.ok;
+    expect(Array.isArray(keys)).to.be.true();
+    expect(keys.length).to.equal(0);
     done();
   });
 });

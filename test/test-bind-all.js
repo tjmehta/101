@@ -12,8 +12,8 @@ describe('bind-all', function() {
   it('should bind all the methods', function(done) {
     var res;
     var Test = function() {
-      this.run(this.fn);
       bindAll(this);
+      this.run(this.fn);
     };
     Test.prototype = {
       run: function(fn) { return fn(); },
@@ -21,7 +21,7 @@ describe('bind-all', function() {
     };
     new Test();
 
-    expect(res).to.be.true;
+    expect(res).to.be.true();
     done();
   });
 
@@ -29,8 +29,8 @@ describe('bind-all', function() {
     var binded;
     var unbinded;
     var Test = function() {
-      this.run(this.fn, this.not);
       bindAll(this, ['fn']);
+      this.run(this.fn, this.not);
     };
     Test.prototype = {
       run: function(one, two) { one(); two(); },
@@ -39,8 +39,8 @@ describe('bind-all', function() {
     };
     new Test();
 
-    expect(binded).to.be.true;
-    expect(unbinded).to.be.false;
+    expect(binded).to.be.true();
+    expect(unbinded).to.be.false();
     done();
   });
 
@@ -48,8 +48,8 @@ describe('bind-all', function() {
     var binded;
     var unbinded;
     var Test = function() {
-      this.run(this.fn, this.not);
       bindAll(this, 'fn');
+      this.run(this.fn, this.not);
     };
     Test.prototype = {
       run: function(one, two) { one(); two(); },
@@ -58,8 +58,8 @@ describe('bind-all', function() {
     };
     new Test();
 
-    expect(binded).to.be.true;
-    expect(unbinded).to.be.false;
+    expect(binded).to.be.true();
+    expect(unbinded).to.be.false();
     done();
   });
 
@@ -67,8 +67,8 @@ describe('bind-all', function() {
     var binded;
     var also;
     var Test = function() {
-      this.run(this.fn, this.also);
       bindAll(this, ['fn', 'also']);
+      this.run(this.fn, this.also);
     };
     Test.prototype = {
       run: function(one, two) { one(); two(); },
@@ -77,8 +77,8 @@ describe('bind-all', function() {
     };
     new Test();
 
-    expect(binded).to.be.true;
-    expect(also).to.be.true;
+    expect(binded).to.be.true();
+    expect(also).to.be.true();
     done();
   });
 
@@ -86,8 +86,8 @@ describe('bind-all', function() {
     var binded;
     var also;
     var Test = function() {
-      this.run(this.fn, this.also);
       bindAll(this, 'fn also');
+      this.run(this.fn, this.also);
     };
     Test.prototype = {
       run: function(one, two) { one(); two(); },
@@ -96,8 +96,8 @@ describe('bind-all', function() {
     };
     new Test();
 
-    expect(binded).to.be.true;
-    expect(also).to.be.true;
+    expect(binded).to.be.true();
+    expect(also).to.be.true();
     done();
   });
 
