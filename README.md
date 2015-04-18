@@ -96,6 +96,9 @@ obj.init(); // undefined
 bindAll(obj);
 obj.init(); // "Hello World"
 
+bindAll(obj, ['handler']);
+obj.init(); // "Hello World"
+
 bindAll(obj, 'handler');
 obj.init(); // "Hello World"
 ```
