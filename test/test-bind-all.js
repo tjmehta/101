@@ -18,5 +18,7 @@ describe('bind-all', function() {
       run: function(fn) { return fn(); },
       fn: function() { res = this instanceof Test; }
     };
+
+    done();
   });
 });

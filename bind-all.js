@@ -10,7 +10,7 @@ var isFunction = require('./is-function');
  *
  * @param {object} object - object to bind
  * @param {array|string} [methods] - array or space-separated string containing the names of the methods to bind
- * @return {object} - the binded object
+ * @return {object} the binded object
  */
 module.exports = bindAll;
 
