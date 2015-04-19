@@ -8,4 +8,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - [`keysIn`](https://github.com/tjmehta/101#keysIn) module
 - This CHANGELOG file
 
-[0.0.8]: https://github.com/tjmehta/101/compare/v0.16.1...v0.17.0
+[0.17.0]: https://github.com/tjmehta/101/compare/v0.16.1...v0.17.0
