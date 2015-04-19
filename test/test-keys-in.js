@@ -22,18 +22,6 @@ describe('keys-in', function() {
     done();
   });
 
-  it('should return also the prototype keys', function(done) {
-    var Test = function() {};
-    Test.prototype.hello = function() { return 'hello'; };
-    Test.prototype.world = function() { return 'world'; };
-
-    var keys = keysIn(Test);
-
-    expect(keys).to.have.length(2);
-    expect(keys).to.deep.equal(['hello', 'world']);
-    done();
-  });
-
   it('should return an empty array', function(done) {
     var keys = keysIn();
 

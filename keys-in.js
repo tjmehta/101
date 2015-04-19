@@ -15,9 +15,6 @@ function keysIn(object) {
   if (!object) { return []; }
 
   var keys = [];
-
-  if (object.prototype) { object = Object.create(object.prototype); }
-
   for (var key in object) {
     keys.push(key);
   }
