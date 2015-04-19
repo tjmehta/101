@@ -21,7 +21,6 @@ function bindAll (object, methods) {
   }
 
   var keys = methods || keysIn(object);
-  if (!keys.length) { return object; }
 
   // Bind all the specified methods
   keys.forEach(function(key) {
