@@ -73,8 +73,8 @@ apply({ prop: 'val' })(function () { return this.prop; });  // 'val'
 ## bindAll
 
 Bind methods in an object.
-Methods to bind can be specified either as an array or a space-seprated string.
-If none are specified, it will bind all the available methods.
+You can pass an array containing the name of the methods to bind as second
+argument or leave it empty to bind all the available methods.
 
 ```js
 var bindAll = require('101/bindAll');
@@ -97,9 +97,6 @@ bindAll(obj);
 obj.init(); // "Hello World"
 
 bindAll(obj, ['handler']);
-obj.init(); // "Hello World"
-
-bindAll(obj, 'handler');
 obj.init(); // "Hello World"
 ```
 

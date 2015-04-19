@@ -16,21 +16,11 @@ var keysIn = require('./keys-in');
 module.exports = bindAll;
 
 function bindAll (object, methods) {
-  var keys;
-  if (methods) {
-    // if we passed an array, set keys to the passed array
-    if (Array.isArray(methods)) {
-      keys = methods;
-    } else if (typeof methods === 'string') {
-      // if a string was paased, split it by spaces
-      keys = methods.split(/,\s|[,\s]/);
-    } else {
-      throw new TypeError('The second argument must be an array or a string');
-    }
-  } else {
-    keys = keysIn(object);
+  if (methods && !Array.isArray(methods)) {
+    throw new TypeError('The second argument must be an array');
   }
 
+  var keys = methods || keysIn(object);
   if (!keys.length) { return object; }
 
   // Bind all the specified methods
