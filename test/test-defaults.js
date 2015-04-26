@@ -9,7 +9,7 @@ var expect = Code.expect;
 var defaults = require('../defaults');
 
 describe('defaults', function () {
-  it('should provide default values for an object', function(done) {
+  it('should provide default values for an object', function (done) {
     var a = {
       foo: 1,
       bar: 4,
@@ -32,7 +32,50 @@ describe('defaults', function () {
     done();
   });
 
-  it('should initialize a new target if one does not exist', function(done) {
+  it('should allow defaults in sub objects', function (done) {
+    var a = {
+      qux: {
+        one: 1,
+        two: 2
+      },
+      foo: {
+        bar: true
+      },
+      empty: false
+    };
+
+    var b = {
+      qux: {
+        two: 3,
+        three: 3
+      },
+      baz: {
+        buz: false
+      },
+      empty: {}
+    };
+
+    var c = defaults(b, a);
+
+    expect(c).to.deep.equal({
+      qux: {
+        one: 1,
+        two: 3,
+        three: 3
+      },
+      foo: {
+        bar: true
+      },
+      baz: {
+        buz: false
+      },
+      empty: {}
+    });
+
+    done();
+  });
+
+  it('should initialize a new target if one does not exist', function (done) {
     var a = null;
 
     var b = {
@@ -52,7 +95,7 @@ describe('defaults', function () {
     done();
   });
 
-  it('should return target if source does not exist', function(done) {
+  it('should return target if source does not exist', function (done) {
     var a = null;
 
     var b = {
@@ -72,7 +115,7 @@ describe('defaults', function () {
     done();
   });
 
-  it('should support partial functionality', function(done) {
+  it('should support partial functionality', function (done) {
     var a = {
       foo: 10
     };

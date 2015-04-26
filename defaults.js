@@ -2,6 +2,7 @@
  * @module 101/defaults
  */
 
+var isObject = require('./is-object');
 var exists = require('./exists');
 
 /**
@@ -24,7 +25,15 @@ function defaults (target, source) {
   if (!source) {
     return target;
   }
+  return reduceObject(target, source);
+}
+
+function reduceObject (target, source) {
   return Object.keys(source).reduce(function (target, key) {
+    if (isObject(target[key]) && isObject(source[key])) {
+      reduceObject(target[key], source[key]);
+      return target;
+    }
     target[key] = exists(target[key]) ? target[key] : source[key];
     return target;
   }, target);
