@@ -133,7 +133,7 @@ curry(join, 3)(1)(0)(1); // "101"
 
 ## defaults
 
-Fill non-existing object values with defaults. Use it to set defaults on options.
+Fill non-existing object values with defaults. Use it to set defaults on options. Works with supplying default values in sub-objects as well.
 Supports partial functionality (great with array functions).
 
 
@@ -144,6 +144,20 @@ var defs = { foo: 1, bar: 2, qux: 2 };
 
 defaults(opts, defs); // { foo: 0, bar: 1, qux: 2 }
 [opts].map(defaults(defs)); // [ { foo: 0, bar: 1, qux: 2 } ]
+
+var opts = {
+  foo: {
+    one: 1,
+    two: 2
+  }
+};
+var defs = {
+  foo: {
+    two: 20,
+    three: 30
+  }
+};
+defaults(opts, refs); // { foo: { one: 1, two: 2, three: 30 } }
 ```
 
 ## del
