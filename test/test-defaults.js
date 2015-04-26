@@ -59,17 +59,17 @@ describe('defaults', function () {
 
     expect(c).to.deep.equal({
       qux: {
-        one: 1,
-        two: 3,
-        three: 3
+        one: 1, // from defaults
+        two: 3, // set in the set value (but in default)
+        three: 3 // in the target (not from defaults)
       },
       foo: {
-        bar: true
+        bar: true // object from default
       },
       baz: {
-        buz: false
+        buz: false // object from default
       },
-      empty: {}
+      empty: {} // target object, primitive default
     });
 
     done();
