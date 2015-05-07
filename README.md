@@ -70,6 +70,36 @@ function sum () {  /* sums all arguments */ }
 apply({ prop: 'val' })(function () { return this.prop; });  // 'val'
 ```
 
+## bindAll
+
+Bind methods in an object.
+You can pass an array containing the name of the methods to bind as second
+argument or leave it empty to bind all the available methods.
+
+```js
+var bindAll = require('101/bindAll');
+var obj = {
+  init: function() {
+    this.on(this.handler);
+  },
+  on: function(handler) {
+    return handler();
+  },
+  handler: function() {
+    console.log(this.msg);
+  },
+  msg: 'Hello World'
+}
+
+obj.init(); // undefined
+
+bindAll(obj);
+obj.init(); // "Hello World"
+
+bindAll(obj, ['handler']);
+obj.init(); // "Hello World"
+```
+
 ## clone
 
 It's [clone](https://www.npmjs.org/package/clone) (Only exporting this bc it is used internal to 101)
@@ -422,6 +452,22 @@ Functional version of val typeof 'string'
 var isString = require('101/is-string');
 
 ['foo', 'bar', 1].map(isString); // [true, true, false]
+```
+
+## keysIn
+
+Return an array containing all the keys of an object.
+It differs from the native `Object.keys` by including also the `prototype` keys.
+
+```js
+var keysIn = require('101/keys-in');
+var User = function() {
+  this.msg = 'Hello World';
+}
+User.prototype.isLoggedIn = function() { /* example function */ }
+
+var user = new User();
+keysIn(user); // ['msg', 'isLoggedIn']
 ```
 
 ## last
