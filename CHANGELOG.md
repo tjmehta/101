@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.17.0] - 2015-02-17
+## [0.17.0] - 2015-05-07
 ### Added
 - [`bindAll`](https://github.com/tjmehta/101#bindAll) module
 - [`keysIn`](https://github.com/tjmehta/101#keysIn) module
