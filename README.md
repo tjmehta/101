@@ -335,10 +335,22 @@ hasKeypaths(obj, { 'foo.bar': barObj }, true);   // true
 hasKeypaths(obj, { 'foo.bar': barObj }, false);  // false
 hasKeypaths(obj, { 'foo.bar': obj.foo }, false); // true
 hasKeypaths(obj, ['foo.bar'], false);            // true, uses [hasOwnProperty vs in](http://stackoverflow.com/questions/13632999/if-key-in-object-or-ifobject-hasownpropertykey)
+
 // use it with find, findIndex, or filter!
 var arr = [obj, { b: 1 }, { c: 1 }];
-find(arr, hasProps({ 'foo.bar.qux':1 })); // { foo: { bar: { qux: 1 } } }
-find(arr, hasProps(['foo.bar.qux']));     // { foo: { bar: { qux: 1 } } }
+find(arr, hasKeypaths({ 'foo.bar.qux':1 })); // { foo: { bar: { qux: 1 } } }
+find(arr, hasKeypaths(['foo.bar.qux']));     // { foo: { bar: { qux: 1 } } }
+
+// use it to verify options object has required properties
+var opts = {
+  host: 'localhost',
+  port: '3333',
+  user: {
+    id: 5
+  }
+};
+hasKeypaths(opts, ['host', 'port', 'user.id']); // true
+
 ```
 
 ## hasProperties
