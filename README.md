@@ -381,6 +381,20 @@ find(arr, hasProps({ a:1 })); // { a: 1, b: 1 }
 find(arr, hasProps(['a']));   // { a: 1, b: 1 }
 ```
 
+## indexBy
+Hashes an array of objects based on the value of a provided common key.
+Works nicely with `pluck` and `reduce`.
+
+```js
+var arr = [ 
+    {foo: 'bar'},
+    {foo: 'qux'}
+];
+
+indexBy(arr, 'foo') // {bar: {foo: 'bar'}, qux: {foo: 'qux'}}
+arr.reduce(indexBy(pluck('foo')), {}) // {bar: {foo: 'bar'}, qux: {foo: 'qux'}}
+```
+
 ## instanceOf
 
 Functional version of JavaScript's instanceof.
