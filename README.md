@@ -386,12 +386,13 @@ Hashes an array of objects based on the value of a provided common key.
 Works nicely with `pluck` and `reduce`.
 
 ```js
-var arr = [ 
+var arr = [
     {foo: 'bar'},
     {foo: 'qux'}
 ];
 
 indexBy(arr, 'foo') // {bar: {foo: 'bar'}, qux: {foo: 'qux'}}
+// always provide initial value when using with reduce!
 arr.reduce(indexBy(pluck('foo')), {}) // {bar: {foo: 'bar'}, qux: {foo: 'qux'}}
 ```
 
