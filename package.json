@@ -1,6 +1,6 @@
 {
   "name": "101",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "common javascript utils that can be required selectively that assume es5+",
   "main": "index.js",
   "scripts": {
