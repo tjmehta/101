@@ -3,6 +3,7 @@
  */
 
 var isObject = require('./is-object');
+var isBoolean = require('./is-boolean');
 var exists = require('./exists');
 
 /**
@@ -14,23 +15,28 @@ var exists = require('./exists');
  */
 module.exports = defaults;
 
-function defaults (target, source) {
+function defaults (target, source, deep) {
   if (arguments.length === 1) {
     source = target;
     return function (target) {
       return defaults(target, source);
     };
+  } else if (arguments.length === 2 && isBoolean(source)) {
+    deep = source;
+    source = target;
+    return function (target) { return defaults(target, source, deep); };
   }
   target = target || {};
+  deep = deep || false;
   if (!source) {
     return target;
   }
-  return reduceObject(target, source);
+  return reduceObject(target, source, deep);
 }
 
-function reduceObject (target, source) {
+function reduceObject (target, source, deep) {
   return Object.keys(source).reduce(function (target, key) {
-    if (isObject(target[key]) && isObject(source[key])) {
+    if (isObject(target[key]) && isObject(source[key]) && deep) {
       reduceObject(target[key], source[key]);
       return target;
     }
