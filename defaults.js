@@ -21,10 +21,12 @@ function defaults (target, source, deep) {
     return function (target) {
       return defaults(target, source);
     };
-  } else if (arguments.length === 2 && isBoolean(source)) {
+  } else if (isBoolean(source)) {
     deep = source;
     source = target;
-    return function (target) { return defaults(target, source, deep); };
+    return function (target) {
+      return defaults(target, source, deep);
+    };
   }
   target = target || {};
   deep = deep || false;
