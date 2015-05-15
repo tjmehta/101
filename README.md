@@ -157,7 +157,7 @@ var defs = {
     three: 30
   }
 };
-defaults(opts, refs); // { foo: { one: 1, two: 2, three: 30 } }
+defaults(opts, defs); // { foo: { one: 1, two: 2, three: 30 } }
 ```
 
 ## del
