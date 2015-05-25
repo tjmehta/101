@@ -69,6 +69,21 @@ describe('pick', function () {
     });
     done();
   });
+  it('should pick keys from objects when using keypaths', function(done) {
+    var obj = {
+      koo: 1,
+      qux: 1,
+      fiz: {
+        buz: 1
+      },
+      'fiz.buz': 2
+    };
+    expect(pick(obj, 'fiz')).to.eql({ fiz: { buz: 1 } });
+    expect(pick(obj, 'fiz.buz')).to.eql({ fiz: { buz: 1 } });
+    expect(pick(obj, '["fiz.buz"]')).to.eql({ 'fiz.buz': 2 });
+    expect(pick(obj, 'fiz.nop')).to.eql({});
+    done();
+  });
   it('should pick keys from objects in an array when used with map', function(done) {
     var objs = [
       {
