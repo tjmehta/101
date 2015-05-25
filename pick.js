@@ -41,9 +41,10 @@ function pick (obj, args) {
 function copy (from, to) {
   return function (key) {
     if (isRegExp(key)) {
-      Object.keys(from).forEach(function(keyFrom) {
-        if (key.test(keyFrom)) {
-          to[keyFrom] = from[keyFrom];
+      var flatFrom = keypather.flatten(from);
+      Object.keys(flatFrom).forEach(function(keypathFrom) {
+        if (key.test(keypathFrom)) {
+          keypather.set(to, keypathFrom, keypather.get(from, keypathFrom));
         }
       });
     } else {
