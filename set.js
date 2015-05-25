@@ -2,9 +2,9 @@
  * @module 101/set
  */
 
-var assign = require('./assign');
 var isString = require('./is-string');
 var isObject = require('./is-object');
+var keypather = require('keypather')();
 
 /**
  * Functional version of obj[key] = val.
@@ -23,7 +23,7 @@ function set (obj, key, val) {
     // (setObj)
     setObj = obj;
     return function (obj) {
-      return assign(obj, setObj); // extends original
+      return setKeypaths(obj, setObj); // extends original
     };
   }
   if (arguments.length === 2) {
@@ -32,15 +32,15 @@ function set (obj, key, val) {
       val = key;
       key = obj;
       setObj = {};
-      setObj[key] = val;
+      keypather.set(setObj, key, val);
       return function (obj) {
-        return assign(obj, setObj); // extends original
+        return setKeypaths(obj, setObj); // extends original
       };
     }
     else if (isObject(key)) {
       // (obj, setObj)
       setObj = key;
-      return assign(obj, setObj); // extends original
+      return setKeypaths(obj, setObj); // extends original
     }
     else {
       throw new TypeError('Invalid arguments: expected str, val or val, obj');
@@ -48,7 +48,15 @@ function set (obj, key, val) {
   }
   else {
     setObj = {};
-    setObj[key] = val;
-    return assign(obj, setObj); // extends original
+    keypather.set(setObj, key, val);
+    return setKeypaths(obj, setObj); // extends original
   }
+}
+
+function setKeypaths (obj, setObj) {
+  Object.keys(setObj).forEach(function (keypath) {
+    var val = setObj[keypath];
+    keypather.set(obj, keypath, val);
+  });
+  return obj;
 }

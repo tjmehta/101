@@ -36,7 +36,6 @@ describe('set', function () {
       {
         foo: 2,
         bar: 2,
-        qux: 2
       },
       {
         foo: 3,
@@ -73,6 +72,47 @@ describe('set', function () {
 
     expect(set(obj, setObj)).to.deep.equal(expected);
     expect(obj[key]).to.equal(100); // original obj modified
+    done();
+  });
+  it('should set the right value when given an object and a keypath', function (done) {
+    var obj = {
+      foo: 1,
+      qux: 1
+    };
+
+    var expected = {
+      foo: 1,
+      bar: {
+        baz: 100
+      },
+      qux: 1
+    };
+
+    expect(set(obj, 'bar.baz', 100)).to.deep.equal(expected);
+    expect(obj).to.deep.equal(expected);
+    done();
+  });
+  it('should set the right value when given an object and a keypath object', function (done) {
+    var obj = {
+      foo: 1,
+      qux: 1
+    };
+
+    var keypathObj = {
+      'bar.baz' : 100,
+      yolo: 1
+    };
+
+    var expected = {
+      foo: 1,
+      bar: {
+        baz: 100
+      },
+      qux: 1,
+      yolo: 1
+    };
+    expect(set(obj, keypathObj)).to.deep.equal(expected);
+    expect(obj).to.deep.equal(expected);
     done();
   });
   it('should set a set of keys and vals when given an object when used with array functions', function (done) {

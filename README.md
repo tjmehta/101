@@ -722,11 +722,14 @@ set(obj, 'foo'); // 1
 
 // supports keypaths by default
 var obj = {
-  foo: 1,
   bar: 2
 };
 
-set(obj, 'foo', 100); // { foo: 100, bar:2 }
+set(obj, 'foo.qux', 100); // { foo: { qux: 100 }, bar: 2 }
+set(obj, {
+  'foo.qux': 100
+  'yolo': 1
+}); // { foo: { qux: 100 }, bar: 2, yolo: 1 }
 ```
 
 ## values
