@@ -14,7 +14,7 @@ the method is not available in a widely supported JS version (currently ES5).
 ### 2) No need for custom builds.
 * With 101, import naturally, and what you use will be bundled.
 * Each util method is a module that can be required `require('101/<util>')`.
-* Currently node/browserify is supported, I will add other module system support on request.
+* Currently CommonJS (node, browserify, webpack, etc) is supported, I will add other module system support on request.
 * Other libraries can be large, and require manually creating custom builds when optimizing for size.
 
 ### Why not release each as individual modules?
