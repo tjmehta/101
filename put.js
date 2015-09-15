@@ -3,10 +3,10 @@
  */
 
 var clone = require("./clone");
-var assign = require('./assign');
 var isString = require('./is-string');
-var isObject = require('./is-object');
 var isNumber = require('./is-number');
+var isObject = require('./is-object');
+var keypather = require('keypather')();
 
 /**
  * Immutable version of obj[key] = val.
@@ -20,41 +20,47 @@ var isNumber = require('./is-number');
 module.exports = put;
 
 function put (obj, key, val) {
-  var putObj;
-  if (!arguments.length) {
-    throw new TypeError('Invalid number of arguments: expected at least one');
-  }
+  var setObj;
   if (arguments.length === 1) {
-    // (putObj)
-    putObj = obj;
-    if (!isObject(putObj)) throw new TypeError('Invalid arguments: expected putObj');
+    // (setObj)
+    setObj = obj;
     return function (obj) {
-      return assign(clone(obj), putObj); // returns new object
+      return putKeypaths(obj, setObj); // extends original
     };
   }
   if (arguments.length === 2) {
     if (isString(obj) || isNumber(obj)) {
       // (key, val)
-      val = arguments[1];
-      key = arguments[0];
-      putObj = {};
-      putObj[key] = val;
+      val = key;
+      key = obj;
+      setObj = {};
+      keypather.set(setObj, key, val);
       return function (obj) {
-        return assign(clone(obj), putObj); // returns new object
+        return putKeypaths(obj, setObj); // extends original
       };
     }
     else if (isObject(key)) {
-      // (obj, putObj)
-      putObj = key;
-      return assign(clone(obj), putObj);
+      // (obj, setObj)
+      setObj = key;
+      return putKeypaths(obj, setObj); // extends original
     }
     else {
-      throw new TypeError('Invalid arguments: expected key, val or obj, putObj');
+      throw new TypeError('Invalid arguments: expected string, number, or object');
     }
   }
   else {
-    putObj = {};
-    putObj[key] = val;
-    return assign(clone(obj), putObj); // returns new object
+    setObj = {};
+    keypather.set(setObj, key, val);
+    return putKeypaths(obj, setObj); // extends original
   }
+}
+
+function putKeypaths (obj, setObj) {
+  // copy the object
+  obj = clone(obj);
+  Object.keys(setObj).forEach(function (keypath) {
+    var val = setObj[keypath];
+    keypather.set(obj, keypath, val);
+  });
+  return obj;
 }
