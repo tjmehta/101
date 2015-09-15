@@ -701,6 +701,18 @@ obj; // { foo: 1, bar: 2 } (not modified)
 // use it with array.map
 [obj, obj, obj].map(put('foo', 100)); // [{ foo: 100, bar: 2 }, {copy}, {copy}]
 obj; // { foo: 1, bar: 2 } (not modified)
+
+// supports keypaths by default
+var obj = {
+  bar: 2
+};
+
+put(obj, 'foo.qux', 100); // { foo: { qux: 100 }, bar: 2 }
+put(obj, {
+  'foo.qux': 100
+  'yolo': 1
+}); // { foo: { qux: 100 }, bar: 2, yolo: 1 }
+obj; // { foo: 1, bar: 2 } (not modified)
 ```
 
 ## set
