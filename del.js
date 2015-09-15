@@ -3,7 +3,9 @@
  */
 
 var keypather = require('keypather')();
+var passAny = require('./pass-any');
 var isString = require('./is-string');
+var isNumber = require('./is-number');
 var isObject = require('./is-object');
 
 /**
@@ -31,7 +33,7 @@ function del (obj, key) {
 
 function _del (obj, key) {
   var keys;
-
+  var numberOrString = passAny(isString, isNumber);
   if (isObject(obj) && numberOrString(key)) {
     // (obj, key)
     keypather.del(obj, key);
@@ -49,8 +51,4 @@ function _del (obj, key) {
   else {
     throw new TypeError('Invalid arguments: expected str, val or val, obj');
   }
-}
-
-function numberOrString (val) {
-  return isString(val) || typeof val === 'number';
 }

@@ -3,6 +3,7 @@
  */
 
 var isString = require('./is-string');
+var isNumber = require('./is-number');
 var isObject = require('./is-object');
 var keypather = require('keypather')();
 
@@ -27,7 +28,7 @@ function set (obj, key, val) {
     };
   }
   if (arguments.length === 2) {
-    if (isString(obj) || typeof obj === 'number') {
+    if (isString(obj) || isNumber(obj)) {
       // (key, val)
       val = key;
       key = obj;
@@ -43,7 +44,7 @@ function set (obj, key, val) {
       return setKeypaths(obj, setObj); // extends original
     }
     else {
-      throw new TypeError('Invalid arguments: expected str, val or val, obj');
+      throw new TypeError('Invalid arguments: expected string, number, or object');
     }
   }
   else {
