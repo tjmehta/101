@@ -457,12 +457,12 @@ var isFunction = require('101/is-function');
 
 ## isNumber
 
-Functional version of val typeof 'number'
+Functional version of val typeof 'number'.
 
 ```js
 var isNumber = require('101/is-number');
 
-['foo', 'bar', 1].map(isNumber); // [false, false, true]
+['foo', NaN, 1].map(isNumber); // [false, false, true]
 ```
 
 ## isObject

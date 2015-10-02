@@ -24,6 +24,7 @@ describe('isNumber', function () {
     expect(isNumber(null)).to.be.false();
     expect(isNumber(undefined)).to.be.false();
     expect(isNumber(new String('hey'))).to.be.false();
+    expect(isNumber(NaN)).to.be.false();
     done();
   });
 });
