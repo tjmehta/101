@@ -1,8 +1,11 @@
 ![101](http://i.imgur.com/MFrmMt6.png)
 ===
-[![NPM](https://nodei.co/npm/101.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/101/)
+[![NPM](https://nodei.co/npm/101.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/101/)  
+
 [![Build Status](https://travis-ci.org/tjmehta/101.svg?branch=master)](https://travis-ci.org/tjmehta/101)
 [![Coverage Status](https://coveralls.io/repos/tjmehta/101/badge.png)](https://coveralls.io/r/tjmehta/101)
+[![Dependency Status](https://david-dm.org/tjmehta/101.svg)](https://david-dm.org/tjmheta/101)
+[![devDependency Status](https://david-dm.org/tjmehta/101/dev-status.svg)](https://david-dm.org/tjmehta/101#info=devDependencies)
 
 # Why another JS util library?
 ### 1) 101 will be maintained to minimize overlap with vanilla JS.
