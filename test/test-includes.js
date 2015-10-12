@@ -27,7 +27,9 @@ describe('includes', function () {
       [[1, 2, 3], -2, false],
       [[], 2, false],
       [[], '', false],
-      [[], 0, false]
+      [[], 0, false],
+      [[NaN, 0, 0], NaN , true],
+      [[-0, 0, 0], 0, true],
     ];
 
     describe('compose', function () {
@@ -66,6 +68,8 @@ describe('includes', function () {
       [[], 2, 1000, false],
       [[], '', 1000, false],
       [[], 0, 1000, false],
+      [[NaN, 0, 0], NaN, 0, true],
+      [[-0, 0, 0], 0, 0, true],
       [[1, 2, 3, 4, 5], 4, 10, false],
       [[1, 2, 3, 4, 5], 4, -10, true], // fromIndex < 0, cast to 0
       [[1, 2, 3, 4, 5], 4, -3, true],
