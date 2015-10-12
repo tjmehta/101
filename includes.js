@@ -25,7 +25,7 @@ function includes (array, searchElement, fromIndex) {
     fromIndex = 0;
   }
   if (Array.prototype.includes) {
-    return array.includes(searchElement, fromIndex);
+    return Array.prototype.includes.call(array, searchElement, fromIndex);
   } else {
     // ES7 Array.prototype.includes polyfill (modified)
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes#Browser_compatibility

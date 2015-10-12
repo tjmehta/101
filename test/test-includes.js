@@ -3,18 +3,41 @@
  */
 'use strict';
 
+var Code = require('code');
 var Lab = require('lab');
+var sinon = require('sinon');
+
 var lab = exports.lab = Lab.script();
 
+var afterEach = lab.afterEach;
+var beforeEach = lab.beforeEach;
 var describe = lab.describe;
-var it = lab.it;
-var Code = require('code');
 var expect = Code.expect;
+var it = lab.it;
 
 var includes = require('../includes');
 
 describe('includes', function () {
+
+  describe('stubbed Array.prototype.includes', function () {
+    beforeEach(function (done) {
+      Array.prototype.includes = sinon.stub().returns(true);
+      done();
+    });
+    afterEach(function (done) {
+      delete Array.prototype.includes;
+      done();
+    });
+    it('should defer to ES7 includes if defined', function (done) {
+      var result = includes([1, 2, 3], 2);
+      expect(result).to.equal(true);
+      expect(Array.prototype.includes.callCount).to.equal(1);
+      done();
+    });
+  });
+
   describe('without fromIndex', function () {
+    var someObj = {};
     var tests = [
       // array, searchItem, expectedResult
       [[1, 2, 3], 'a', false],
@@ -25,11 +48,23 @@ describe('includes', function () {
       [[1, 2, 3], 4, false],
       [[1, 2, 3], 0, false],
       [[1, 2, 3], -2, false],
+      [['a', 'b', 'c'], 'b', true],
+      [['a', 'b', 'c'], 'e', false],
+      [['a', 'b', someObj, 'c'], someObj, true],
+      [['a', 'b', 'c'], someObj, false],
       [[], 2, false],
       [[], '', false],
       [[], 0, false],
-      [[NaN, 0, 0], NaN , true],
+      [[NaN, 0, 0], NaN, true],
+      [[NaN, 0, 0], 0, true],
       [[-0, 0, 0], 0, true],
+      [[-0, 0, 0], -0, true],
+      [[0, 0, 0], -0, true],
+      [[0, NaN, 0, 0], NaN, true],
+      [[0, NaN, 0, 0], 0, true],
+      [[0, -0, 0, 0], 0, true],
+      [[0, -0, 0, 0], -0, true],
+      [[0, 0, 0, 0], -0, true]
     ];
 
     describe('compose', function () {
@@ -52,9 +87,11 @@ describe('includes', function () {
         done();
       });
     });
+
   });
 
   describe('with fromIndex', function () {
+    var someObj = {};
     var tests = [
       // array, searchItem, fromIndex, expectedResult
       [[1, 2, 3], 'a', 1, false],
@@ -65,11 +102,25 @@ describe('includes', function () {
       [[1, 2, 3], 4, 0, false],
       [[1, 2, 3], 0, 0, false],
       [[1, 2, 3], -2, 0, false],
+      [['a', 'b', 'c'], 'b', 0, true],
+      [['a', 'b', 'c'], 'e', 0, false],
+      [['a', 'b', someObj, 'c'], someObj, 0, true],
+      [['a', 'b', 'c'], someObj, 0, false],
       [[], 2, 1000, false],
       [[], '', 1000, false],
       [[], 0, 1000, false],
       [[NaN, 0, 0], NaN, 0, true],
       [[-0, 0, 0], 0, 0, true],
+      [[NaN, 0, 0], NaN, 0, true],
+      [[NaN, 0, 0], 0, 0, true],
+      [[-0, 0, 0], 0, 0, true],
+      [[-0, 0, 0], -0, 0, true],
+      [[0, 0, 0], -0, 0, true],
+      [[0, NaN, 0, 0], NaN, 0, true],
+      [[0, NaN, 0, 0], 0, 0, true],
+      [[0, -0, 0, 0], 0, 0, true],
+      [[0, -0, 0, 0], -0, 0, true],
+      [[0, 0, 0, 0], -0, 0, true],
       [[1, 2, 3, 4, 5], 4, 10, false],
       [[1, 2, 3, 4, 5], 4, -10, true], // fromIndex < 0, cast to 0
       [[1, 2, 3, 4, 5], 4, -3, true],
