@@ -408,6 +408,16 @@ includes(haystack, 'c'); // true
 // optional 3rd argument, searchFrom. Begin searching the target array from a specified index.
 includes(haystack, 'c', 3); // false
 includes(haystack, 'c', 0); // true
+
+// partial argument functionality
+var i = includes(haystack);
+i('c') // true
+i('g') // false
+
+// example composition usage:
+var not = require('101/not');
+var notIn = not(includes);
+[1, 2, 3, 4, 5].filter(notIn([1, 2, 3])); // [4, 5]
 ```
 
 ## indexBy
