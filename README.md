@@ -398,6 +398,31 @@ find(arr, hasProps({ a:1 })); // { a: 1, b: 1 }
 find(arr, hasProps(['a']));   // { a: 1, b: 1 }
 ```
 
+## includes
+
+Polyfill of ES7 proposed Array.prototype.includes. Will default to Array.prototype.includes if
+present.
+
+```js
+var includes = require('101/includes');
+var haystack = ['a', 'b', 'c', 'd', 'e'];
+includes(haystack, 'c'); // true
+
+// optional 3rd argument, searchFrom. Begin searching the target array from a specified index.
+includes(haystack, 'c', 3); // false
+includes(haystack, 'c', 0); // true
+
+// partial argument functionality
+var i = includes(haystack);
+i('c') // true
+i('g') // false
+
+// example composition usage:
+var not = require('101/not');
+var notIn = not(includes);
+[1, 2, 3, 4, 5].filter(notIn([1, 2, 3])); // [4, 5]
+```
+
 ## indexBy
 Hashes an array of objects based on the value of a provided common key.
 Works nicely with `pluck` and `reduce`.

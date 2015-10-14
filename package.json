@@ -31,7 +31,8 @@
   "homepage": "https://github.com/tjmehta/101",
   "devDependencies": {
     "code": "^1.4.0",
-    "lab": "^5.9.0"
+    "lab": "^5.9.0",
+    "sinon": "^1.17.1"
   },
   "dependencies": {
     "clone": "^0.1.18",
