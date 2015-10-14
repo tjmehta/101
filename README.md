@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/tjmehta/101.svg?branch=master)](https://travis-ci.org/tjmehta/101)
 [![Coverage Status](https://coveralls.io/repos/tjmehta/101/badge.png)](https://coveralls.io/r/tjmehta/101)
-[![Dependency Status](https://david-dm.org/tjmehta/101.svg)](https://david-dm.org/tjmheta/101)
+[![Dependency Status](https://david-dm.org/tjmehta/101.svg)](https://david-dm.org/tjmehta/101)
 [![devDependency Status](https://david-dm.org/tjmehta/101/dev-status.svg)](https://david-dm.org/tjmehta/101#info=devDependencies)
 
 # Why another JS util library?
