@@ -2,8 +2,6 @@
  * @module 101/is-integer
  */ 
 
-var isNumber = require('./is-number');
-
 /**
  * Returns true if n is an integer.
  * @function module:101/is-integer
@@ -14,5 +12,5 @@ var isNumber = require('./is-number');
 module.exports = isInteger;
 
 function isInteger (val) {
-	return isNumber(val) && val % 1 === 0;
-};
+  return typeof val === 'number' && isFinite(val) && Math.floor(val) === val;
+}

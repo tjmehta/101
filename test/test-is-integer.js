@@ -18,7 +18,10 @@ describe('isInteger', function () {
   it('should return false for non-numbers and non-ints', function(done) {
     expect(isInteger(1.1)).to.be.false();
     expect(isInteger(2/3)).to.be.false();
+    expect(isInteger(NaN)).to.be.false();
+    expect(isInteger(false)).to.be.false();
     expect(isInteger(Math.Pi)).to.be.false();
+    expect(isInteger(Math.Infinity)).to.be.false();
     expect(isInteger([])).to.be.false();
     expect(isInteger({})).to.be.false();
     expect(isInteger(/regex/)).to.be.false();
