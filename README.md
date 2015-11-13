@@ -483,6 +483,17 @@ var isFunction = require('101/is-function');
 [parseInt, function () {}, 'foo'].map(isFunction); // [true, true, false]
 ```
 
+## isInteger
+
+Check if a value is an instance of an integer.
+
+```js
+var isInteger = require('101/is-Integer');
+
+isInteger(101); // true
+isInteger(101.01); // false
+```
+
 ## isNumber
 
 Functional version of val typeof 'number'.
