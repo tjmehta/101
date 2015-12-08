@@ -13,11 +13,17 @@ module.exports = keysIn;
 
 function keysIn(object) {
   if (!object) { return []; }
-
-  var keys = [];
-  for (var key in object) {
-    keys.push(key);
+  
+  if (Object.keys) {
+    return Object.keys(object);
+  } else {
+   var keys = [];
+    for (var key in object) {
+      if (object.hasOwnProperty(key)) {
+        keys.push(key);
+      }
+    }
+  
+    return keys; 
   }
-
-  return keys;
 }
