@@ -563,7 +563,7 @@ last('hello');   // 'o'
 
 ## lens
 
-Create a lens to access a data structure.
+Create a lens to access a data structure. When passed a property key as a string, it returns a function `fn(obj)` that acts as a getter for that. It also exposes `.set(value, obj)` and `.mod(fn, obj)`.
 
 ```js
 var fooLens = lens('foo');
@@ -572,13 +572,16 @@ var obj = {
   foo: 'foo',
   bar: 'bar'
 };
-var arr = ['foo', 'bar'];
 
 fooLens(obj); // => 'foo'
 fooLens.set('moo', obj); // => { foo: 'moo', bar: 'bar' }
 fooLens.mod(toUpper, obj); // => { foo: 'MOO', bar: 'bar' }
+```
 
+You may also provide getter and setter functions.
 
+```js
+var arr = ['foo', 'bar'];
 var first = lens(
     function(arr) { return arr[0]; },
     function(val, arr) { var clone = arr.slice(); clone[0] = val; return clone; }
