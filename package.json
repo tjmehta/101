@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/tjmehta/101",
   "devDependencies": {
-    "code": "^2.0.1",
+    "code": "^1.5.0",
     "lab": "^5.9.0",
     "sinon": "^1.17.1"
   },
