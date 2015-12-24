@@ -166,16 +166,16 @@ curry(join, 3)(1)(0)(1); // "101"
 
 ## defaults
 
-Fill non-existing object values with defaults. Use it to set defaults on options. Works with supplying default values in sub-objects as well.
-Supports partial functionality (great with array functions).
-
+Fill non-existing object values with defaults. Use it to set defaults on options. Works with
+supplying default values in sub-objects as well. Supports partial functionality (great with array
+functions). Mutates first argument and returns mutated argument.
 
 ```js
 var defaults = require('101/defaults');
 var opts = { foo: 0, bar: 1 };
 var defs = { foo: 1, bar: 2, qux: 2 };
 
-defaults(opts, defs); // { foo: 0, bar: 1, qux: 2 }
+defaults(opts, defs); // returns mutated `opts` { foo: 0, bar: 1, qux: 2 }
 [opts].map(defaults(defs)); // [ { foo: 0, bar: 1, qux: 2 } ]
 
 var opts = {
