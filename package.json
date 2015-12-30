@@ -12,16 +12,16 @@
     "url": "https://github.com/tjmehta/101"
   },
   "keywords": [
-    "utils",
-    "js",
-    "helpers",
+    "array",
     "functional",
+    "helpers",
+    "js",
+    "map",
+    "object",
     "pick",
     "pluck",
-    "map",
-    "array",
-    "object",
-    "string"
+    "string",
+    "utils"
   ],
   "author": "Tejesh Mehta",
   "license": "MIT",
