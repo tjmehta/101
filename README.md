@@ -80,7 +80,7 @@ You can pass an array containing the name of the methods to bind as second
 argument or leave it empty to bind all the available methods.
 
 ```js
-var bindAll = require('101/bindAll');
+var bindAll = require('101/bind-all');
 var obj = {
   init: function() {
     this.on(this.handler);
