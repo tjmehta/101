@@ -202,6 +202,9 @@ describe('pick', function () {
         bar: 3,
         koo: 3,
         goo: 3
+      }, {
+        yolo: undefined,
+        yoloyolo: false
       }
     ];
     expect(objs.map(pick('bar'))).to.deep.equal([
@@ -213,7 +216,8 @@ describe('pick', function () {
       },
       {
         bar: 3
-      }
+      },
+      {}
     ]);
     expect(objs.map(pick(['bar']))).to.deep.equal([
       {
@@ -224,7 +228,8 @@ describe('pick', function () {
       },
       {
         bar: 3
-      }
+      },
+      {}
     ]);
     expect(objs.map(pick('foo', 'bar'))).to.deep.equal([
       {
@@ -237,7 +242,8 @@ describe('pick', function () {
       {
         foo: 3,
         bar: 3
-      }
+      },
+      {}
     ]);
     expect(objs.map(pick(['foo', 'bar']))).to.deep.equal([
       {
@@ -250,7 +256,8 @@ describe('pick', function () {
       {
         foo: 3,
         bar: 3
-      }
+      },
+      {}
     ]);
     expect(objs.map(pick(['foo', 'bar'], 'qux'))).to.deep.equal([
       {
@@ -264,7 +271,8 @@ describe('pick', function () {
       {
         foo: 3,
         bar: 3
-      }
+      },
+      {}
     ]);
     expect(objs.map(pick(['foo', 'bar'], ['qux']))).to.deep.equal([
       {
@@ -278,13 +286,31 @@ describe('pick', function () {
       {
         foo: 3,
         bar: 3
+      },
+      {}
+    ]);
+    expect(objs.map(pick(['foo', 'bar', 'qux', 'yolo', 'yoloyolo']))).to.deep.equal([
+      {
+        bar: 1
+      },
+      {
+        foo: 2,
+        bar: 2,
+        qux: 2
+      },
+      {
+        foo: 3,
+        bar: 3
+      }, {
+        yolo: undefined,
+        yoloyolo: false
       }
     ]);
     expect(objs.map(pick())).to.deep.equal([
-      {}, {}, {}
+      {}, {}, {}, {}
     ]);
     expect(objs.map(pick([]))).to.deep.equal([
-      {}, {}, {}
+      {}, {}, {}, {}
     ]);
     done();
   });
