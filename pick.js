@@ -48,9 +48,8 @@ function copy (from, to) {
         }
       });
     } else {
-      var val = keypather.get(from, key);
-      if (exists(val)) {
-        keypather.set(to, key, val);
+      if (keypather.in(from, key)) {
+        keypather.set(to, key, keypather.get(from, key));
       }
     }
   };
