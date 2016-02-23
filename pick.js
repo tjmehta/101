@@ -2,10 +2,14 @@
  * @module 101/pick
  */
 
+var exists = require('./exists');
 var isObject = require('./is-object');
 var isRegExp = require('./is-regexp');
+var isString = require('./is-string');
 var keypather = require('keypather')();
-var exists = require('./exists');
+var isKeypath = function (val) {
+  return Array.isArray(val) || isString(val) || isRegExp(val)
+}
 
 /**
  * Returns a new object with the specified keys (with key values from obj).
@@ -17,11 +21,10 @@ var exists = require('./exists');
  */
 module.exports = function () {
   var args = Array.prototype.slice.call(arguments);
-  if (isObject(args[0])) {
+  if (exists(args[0]) && !isKeypath(args[0])) {
     var obj = args.shift();
     return pick(obj, args);
-  }
-  else {
+  } else {
     return function (obj) {
       return pick(obj, args);
     };

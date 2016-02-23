@@ -8,6 +8,14 @@ var expect = Code.expect;
 
 var pick = require('../pick');
 
+var Animal = function (obj) {
+  var self = this
+  Object.keys(obj).forEach(function (key) {
+    var val = obj[key]
+    self[key] = val
+  })
+}
+
 describe('pick', function () {
   it('should pick keys from an object', function(done) {
     var obj = {
@@ -311,6 +319,12 @@ describe('pick', function () {
     ]);
     expect(objs.map(pick([]))).to.deep.equal([
       {}, {}, {}, {}
+    ]);
+    objs = [
+      new Animal({ bar: 1 })
+    ]
+    expect(objs.map(pick('bar'))).to.deep.equal([
+      { bar: 1 }
     ]);
     done();
   });
