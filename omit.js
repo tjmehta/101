@@ -3,7 +3,8 @@
  */
 
 var isObject = require('./is-object');
-var clone = require('./clone');
+var pick = require('./pick')
+var keypather = require('keypather')()
 
 /**
  * Returns a new object without the specified keys.
@@ -27,17 +28,18 @@ module.exports = function () {
 };
 
 function omit (obj, args) {
-  var keys = [];
+  var omitKeys = [];
   args.forEach(function (key) {
-    keys = keys.concat(key);
+    omitKeys = omitKeys.concat(key);
   });
-  var out = clone(obj);
-  keys.forEach(remove(out));
+  var keys = Object.keys(obj);
+  var out = pick(obj, keys);
+  omitKeys.forEach(remove(out));
   return out;
 }
 
 function remove (obj) {
   return function (key) {
-    delete obj[key];
+    keypather.del(obj, key);
   };
 }
