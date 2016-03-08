@@ -112,6 +112,31 @@ describe('omit', function () {
         goo: 3
       }
     ]);
+    var objs2 = [
+      {
+        bar: 1
+      },
+      {
+        foo: { bar: 2 },
+        bar: 2,
+        qux: 2
+      },
+      {
+        foo: { bar: 3 },
+        bar: 3,
+        koo: 3,
+        goo: 3
+      }
+    ];
+    expect(objs2.map(omit(['foo.bar', 'bar'], ['qux']))).to.deep.equal([
+      {},
+      { foo: {} },
+      {
+        foo: {},
+        koo: 3,
+        goo: 3
+      }
+    ]);
     expect(objs.map(omit())).to.deep.equal(objs);
     expect(objs.map(omit([]))).to.deep.equal(objs);
     done();
