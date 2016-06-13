@@ -328,6 +328,7 @@ Hashes an array into groups based on the value of a provided common key.
 Works nicely with `pluck` and `reduce`.
 
 ```js
+var groupBy = require('101/group-by');
 var arr = [
     {id: 1, foo: 'bar'},
     {id: 2, foo: 'qux'},
