@@ -7,7 +7,7 @@ var isFunction = require('./is-function');
 var pluck = require('./pluck');
 
 /**
- * Hashes an array based on the value of a provided common key.
+ * Hashes an array into groups based on the value of a provided common key.
  * @function module:101/index-by
  * @param {array|function|string} arr|indexer - array of objects to be indexed
  * @param {string|function} indexer - the common keypath or function which accepts an object and returns an index key
@@ -34,7 +34,9 @@ function indexBy (indexer) {
     indexer = pluck(indexer);
   }
   return function(prev, cur, index, arr) {
-    prev[indexer(cur)] = cur;
+    var key = indexer(cur)
+    prev[key] = prev[key] || []
+    prev[key].push(cur);
     return prev;
   };
 }

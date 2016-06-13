@@ -1,6 +1,6 @@
 ![101](http://i.imgur.com/MFrmMt6.png)
 ===
-[![NPM](https://nodei.co/npm/101.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/101/)  
+[![NPM](https://nodei.co/npm/101.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/101/)
 
 [![Build Status](https://travis-ci.org/tjmehta/101.svg?branch=master)](https://travis-ci.org/tjmehta/101)
 [![Coverage Status](https://coveralls.io/repos/tjmehta/101/badge.png)](https://coveralls.io/r/tjmehta/101)
@@ -321,7 +321,45 @@ function prefix(pre, str) {
 }
 
 flip(prefix)('hello', '_'); // "_hello"
+```
 
+## groupBy
+Hashes an array into groups based on the value of a provided common key.
+Works nicely with `pluck` and `reduce`.
+
+```js
+var arr = [
+    {id: 1, foo: 'bar'},
+    {id: 2, foo: 'qux'},
+    {id: 3, foo: 'qux'}
+];
+
+groupBy(arr, 'foo')
+/*
+{
+  bar: [
+    {id: 1, foo: 'bar'}
+  ],
+  qux: [
+    {id: 2, foo: 'qux'},
+    {id: 3, foo: 'qux'}
+  ]
+}
+*/
+// always provide initial value when using with reduce!
+arr.reduce(groupBy('foo'), {}) // assumes pluck if passed string
+arr.reduce(groupBy(pluck('foo')), {}) // also accepts function
+/*
+{
+  bar: [
+    {id: 1, foo: 'bar'}
+  ],
+  qux: [
+    {id: 2, foo: 'qux'},
+    {id: 3, foo: 'qux'}
+  ]
+}
+*/
 ```
 
 ## hasKeypaths
@@ -429,11 +467,13 @@ Works nicely with `pluck` and `reduce`.
 
 ```js
 var arr = [
-    {foo: 'bar'},
-    {foo: 'qux'}
+  {foo: 'bar'},
+  {foo: 'qux'}
 ];
 
-indexBy(arr, 'foo') // {bar: {foo: 'bar'}, qux: {foo: 'qux'}}
+arr.reduce(indexBy('foo'), {}) // assumes pluck if passed string
+arr.reduce(indexBy(pluck('foo')), {}) // also accepts function
+// {bar: {foo: 'bar'}, qux: {foo: 'qux'}}
 // always provide initial value when using with reduce!
 arr.reduce(indexBy(pluck('foo')), {}) // {bar: {foo: 'bar'}, qux: {foo: 'qux'}}
 ```
