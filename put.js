@@ -50,7 +50,7 @@ function put (obj, key, val) {
   }
   else {
     setObj = {};
-    keypather.set(setObj, key, val);
+    setObj[key] = val
     return putKeypaths(obj, setObj); // extends original
   }
 }
