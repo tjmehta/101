@@ -119,6 +119,46 @@ describe('put', function () {
     done();
   });
 
+  describe('keypaths', function () {
+    it('should put via keypath object', function (done) {
+      console.log('hello')
+      var obj = {
+        foo: {
+          bar: 1
+        }
+      }
+      var expected = {
+        foo: {
+          bar: 1,
+          qux: 1
+        },
+        yolo: {
+          dolo: 1
+        }
+      }
+      var out = put(obj, { 'foo.qux': 1, 'yolo.dolo': 1 })
+      expect(out).to.deep.equal(expected)
+      done();
+    });
+
+    it('should put via keypath and val', function (done) {
+      var obj = {
+        foo: {
+          bar: 1
+        }
+      }
+      var expected = {
+        foo: {
+          bar: 1,
+          qux: 1
+        }
+      }
+      var out = put(obj, 'foo.qux', 1)
+      expect(out).to.deep.equal(expected)
+      done();
+    });
+  });
+
   it("shouldn't change the type of the object", function(done) {
     var obj = new Date();
 
