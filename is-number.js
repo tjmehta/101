@@ -11,5 +11,5 @@
 module.exports = isNumber;
 
 function isNumber (val) {
-  return !isNaN(val) && (typeof val === 'number' || val instanceof Number);
+  return (typeof val === 'number' || val instanceof Number) && !isNaN(val)
 }
