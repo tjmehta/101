@@ -8,7 +8,7 @@
  * @param {*} val - value checked to be an array
  * @return {boolean} Whether the value is a function or not
  */
-module.exports = Array.prototype.isArray || isArray;
+module.exports = Array.isArray || isArray;
 
 var toString = Object.prototype.toString;
 
