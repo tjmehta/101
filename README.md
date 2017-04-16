@@ -827,6 +827,17 @@ set(obj, {
 }); // { foo: { qux: 100 }, bar: 2, yolo: 1 }
 ```
 
+## tail
+
+Returns the tail of a list
+
+```js
+var tail = require('101/tail');
+
+tail([1, 2, 3]); // [2, 3]
+tail('hello');   // 'ello'
+```
+
 ## values
 
 Returns Array containing the values of the properties of an object
