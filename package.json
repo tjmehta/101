@@ -4,7 +4,7 @@
   "description": "common javascript utils that can be required selectively that assume es5+",
   "main": "index.js",
   "scripts": {
-    "test": "lab -c -t 100 -a code",
+    "test": "lab --leaks -c -t 100 -a code",
     "test-watch": "nodemon --exec lab -c"
   },
   "repository": {
