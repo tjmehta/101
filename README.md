@@ -220,6 +220,9 @@ var obj = {
 };
 
 del(obj, 'foo.moo'); // { foo: { boo: 2 }, bar:3 }
+
+// pass an array of keys to be deleted 
+del(obj, ['foo.moo', 'bar']) // { foo: { boo: 2 } }
 ```
 
 ## envIs
