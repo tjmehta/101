@@ -145,6 +145,17 @@ describe('set', function () {
     expect(objs.map(pluck(key))).to.deep.equal([100, 100, 100]); // original obj modified
     done();
   });
+  describe('deep', function () {
+    it('should set a deep keypath', function (done) {
+      const obj = {
+        // foo: 1,
+        bar: 2
+      }
+      const out = set(obj, 'foo.qux', 100);
+      expect(out).to.deep.equal({ foo: { qux: 100 }, bar: 2 });
+      done();
+    })
+  })
   describe('errors', function() {
     it('should error when given two args that artent str, val or obj, obj', function (done) {
       try {
