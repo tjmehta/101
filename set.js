@@ -49,7 +49,7 @@ function set (obj, key, val) {
   }
   else {
     setObj = {};
-    keypather.set(setObj, key, val);
+    setObj[key] = val
     return setKeypaths(obj, setObj); // extends original
   }
 }
