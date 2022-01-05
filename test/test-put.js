@@ -121,7 +121,6 @@ describe('put', function () {
 
   describe('keypaths', function () {
     it('should put via keypath object', function (done) {
-      console.log('hello')
       var obj = {
         foo: {
           bar: 1
