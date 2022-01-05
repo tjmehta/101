@@ -165,6 +165,27 @@ describe('set', function () {
         expect(err).to.exist();
         done();
       }
+    }); 
+    it('should do nothing when when using __proto__ reserved key', function (done) {
+        target = {}
+        saved = target.__proto__
+        set(target, "__proto__", null);
+        expect(target.__proto__).to.equal(saved);
+        done();
+    });
+    it('should do nothing when using prototype reserved key', function (done) {
+      target = {}
+      saved = target.prototype
+      set(target, "prototype", null);
+      expect(target.prototype).to.equal(saved);
+      done()
+    });
+    it('should do nothing when using constructor reserved key', function (done) {
+      target = {}
+      saved = target.constructor
+      set(target, "constructor", null);
+      expect(target.constructor).to.equal(saved);
+      done()
     });
   });
 });

@@ -19,6 +19,9 @@ var keypather = require('keypather')();
 module.exports = set;
 
 function set (obj, key, val) {
+  if (key === '__proto__' || key === 'prototype' || key === 'constructor') {
+    return
+  }
   var setObj;
   if (arguments.length === 1) {
     // (setObj)
